@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+
+                <link rel="shortcut icon" type="image/png" href="/storage/2024/08/12/just-marrakech-favicon-logo-1723450207.png"/>
+    
+    <title>Just Marrakech - Error 404 Page</title>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
+
+     <link rel="stylesheet" href="https://justmarrakech.com/html/assets/vendor/bootstrap-4.0.0/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://justmarrakech.com/html/assets/css/main.css">
+
+    <link rel="stylesheet" href="https://justmarrakech.com/html/assets/vendor/slick-1.8.1/slick.css">
+    <link rel="stylesheet" href="https://justmarrakech.com/vendors/glow-cookies/glowCookies.css">
+    <link rel="stylesheet" href="https://justmarrakech.com/html/assets/vendor/daterangepicker-master/daterangepicker.css">
+    <link rel="stylesheet" href="https://justmarrakech.com/html/assets/vendor/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="https://justmarrakech.com/html/assets/vendor/font-awesome-5/css/all.css">
+    <link rel="stylesheet" href="https://justmarrakech.com/vendors/flag-icon/css/flag-icon.css">
+   
+    <link rel="stylesheet" href="https://justmarrakech.com/admin/plugins/toast/jquery.toast.min.css">
+   
+    <!-- END GLOBAL MANDATORY STYLES -->
+</head>
+<body class="text-center ">
+<style type="text/css">
+  ul#select2-beauty-service-results {
+    background-color: white;
+}  
+.sv_user_login {
+  /*padding: 2rem 0 10px;*/
+}
+.sv_user_login button {
+  background: #fff;
+  border: 0; 
+  border-radius: 50px;
+  padding: 3px 10px;
+  border: 1px solid #ddd;
+}
+.sv_user_login i {
+  margin-left: 7px;
+  vertical-align: middle;
+}
+
+.fa-bars::before {
+
+    content: "\f0c9";
+
+}
+.sv_user_login button img {
+  margin: 0;
+    margin-left: 0px;
+  padding: 0;
+  width: 33px;
+  height: 33px;
+  margin-left: 7px;
+}
+.head_avatar {
+  vertical-align: middle;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  padding: .7rem;
+  margin-top: .6rem;
+}
+
+.sv_user_login .dropdown-menu {
+  border-radius: 10px;
+  left: -60px !important;
+  margin: 0;
+  min-width: 15rem;
+  top:10px !important;
+}
+.sv_user_login .dropdown-menu li {
+  padding: 7px 10px;
+}
+
+.sv_user_login ul li{
+
+    display: block;
+}
+
+.sv_user_login .dropdown-toggle::after{
+
+ display: none;
+
+}
+
+body.is-rtl .sv_user_login .dropdown-menu{
+
+left:0 !important;
+    
+}
+
+.sv_sub_header a:last-child {
+    display: none !important;
+}
+
+
+</style>
+<div class="mshop-loader  mshop-page-loader ">
+    <div class="loader-inner">
+        <div class="spinner-grow  align-self-center loader-lg"></div>
+    </div>
+</div>
+<script src="https://www.google.com/recaptcha/api.js?" async defer></script>
+
+<div class="white-popup mfp-with-anim mfp-hide mshop-popup-form" id="mshop-login-popup">
+    <div class="popup-inner" style="padding:10px 0px 0px;">
+        <h4 class="popup-title">Sign In</h4>
+        <div class="popup-content">
+            <form class="text-left mshop-form-action account-form" action="https://justmarrakech.com/login" method="POST">
+                <div class="mshop-loader ">
+    <div class="loader-inner">
+        <div class="spinner-grow  align-self-center loader-lg"></div>
+    </div>
+</div>
+                <div class="form popup-inner">
+                    <input type="hidden" name="isfr" value="1" />
+                    <div id="username-field" class="field-wrapper input">
+                        <!--<label for="lusername">EMAIL</label>-->
+                        <i class="fal fa-user-alt"></i>
+                        <input id="lusername" name="email" type="text" class="form-control mshop-validation" data-validation="required" placeholder="EMAIL">
+                    </div>
+
+                    <div id="password-field" class="field-wrapper input mb-2">
+                      
+                        <i class="fal fa-lock"></i>
+                        <input id="lpassword" name="password" type="password" class="form-control mshop-validation" data-validation="required" placeholder="PASSWORD">
+                        <div class="view-password">
+                            <i class="fal fa-eye view"></i>
+                            <i class="fal fa-eye-slash not-view"></i>
+                        </div>
+                    </div>
+                    
+                  
+                    <div class="mshop-message"></div>
+
+                      <div class="" align="right">
+                            <!--<label for="lpassword">PASSWORD</label>-->
+                            <a href="#mshop-reset-popup" class="forgot-pass-link mshop-box-popup" data-effect="mfp-zoom-in">Forgot Password?</a>
+                        </div>
+
+                    <div class="d-sm-flex justify-content-between">
+                        <div class="field-wrapper">
+                            <button type="submit" class="btn btn-primary" value="">LOGIN</button>
+                        </div>
+                    </div>
+
+                      <p class="signup-link" style="padding-top: 10px;">Not registered ? <a href="#mshop-register-popup" class="mshop-box-popup" data-effect="mfp-zoom-in">Create an account</a></p>
+                                                               <div class="division">
+                            <span>OR</span>
+                        </div>
+
+                        <div class="social">
+                             </div>
+                            <div class="social">
+                                                            <a href="https://justmarrakech.com/auth/redirect/google" class="btn social-github"><i class="fab fa-google"></i><span class="brand-name">Google</span>
+                                </a>
+                                                    </div>
+                                                           
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="white-popup mfp-with-anim mfp-hide mshop-popup-form" id="mshop-register-popup">
+    <div class="popup-inner" style="padding:10px 0px 0px;">
+        <h4 class="popup-title">Sign Up</h4>
+        <div class="popup-content">
+            <form class="text-left mshop-form-action account-form" action="https://justmarrakech.com/register" method="POST">
+                <div class="mshop-loader ">
+    <div class="loader-inner">
+        <div class="spinner-grow  align-self-center loader-lg"></div>
+    </div>
+</div>
+                <div class="form popup-inner">
+                    <input type="hidden" name="isfr" value="1" />
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div id="first_name-field" class="field-wrapper input">
+                                <!--<label for="rfirst_name">FIRST NAME</label>-->
+                                <i class="fal fa-user-alt"></i>
+                                <input id="rfirst_name" name="first_name" type="text" class="form-control mshop-validation" data-validation="required" placeholder="FIRST NAME">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div id="last_name-field" class="field-wrapper input">
+                                <!--<label for="rlast_name">LAST NAME</label>-->
+                                <i class="fal fa-user-alt"></i>
+                                <input id="rlast_name" name="last_name" type="text" class="form-control mshop-validation" data-validation="required" placeholder="LAST NAME">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="email-field" class="field-wrapper input">
+                        <!--<label for="remail">EMAIL</label>-->
+                        <i class="fal fa-at"></i>
+                        <input id="remail" name="email" type="text" value="" class="form-control mshop-validation" data-validation="required" placeholder="EMAIL">
+                    </div>
+
+                    <div id="password-field" class="field-wrapper input mb-2">
+                        <!--<div class="d-flex justify-content-between">
+                            <label for="rpassword">PASSWORD</label>
+                            <a href="#mshop-reset-popup" class="forgot-pass-link mshop-box-popup" data-effect="mfp-zoom-in">Forgot Password?</a>
+                        </div>-->
+                        <i class="fal fa-lock"></i>
+                        <input id="rpassword" name="password" type="password" class="form-control mshop-validation" data-validation="required" placeholder="PASSWORD">
+                        <div class="view-password">
+                            <i class="fal fa-eye view"></i>
+                            <i class="fal fa-eye-slash not-view"></i>
+                        </div>
+                    </div>
+
+                    <div class="field-wrapper terms_condition">
+                        <div class="n-chk">
+                            <label class="new-control new-checkbox checkbox-primary">
+                                <input type="checkbox" name="agree_field" value="1" id="agree-term" class="new-control-input mshop-validation" data-validation="required">
+                                <span class="new-control-indicator"></span><span>I have read and accept the <a href="https://justmarrakech.com/page/conditions-generales-de-vente">Terms and Conditions</a></span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                     
+                    <div class="mshop-message"></div>
+
+                    <div class="d-sm-flex justify-content-between">
+                        <div class="field-wrapper">
+                            <button type="submit" class="btn btn-primary" value="">REGISTER</button>
+                        </div>
+                    </div>
+
+                        <p class="signup-link">Already have an account? <a href="#mshop-login-popup" class="mshop-box-popup" data-effect="mfp-zoom-in">Login</a></p>
+
+                                            <div class="division">
+                            <span>OR</span>
+                        </div>
+
+                        <div class="social">
+                             </div>
+                            <div class="social">
+                                                            <a href="https://justmarrakech.com/auth/redirect/google" class="btn social-github">
+                                    <i class="fab fa-google"></i>
+                                    <span class="brand-name">Google</span>
+                                </a>
+                                                    </div>
+                    
+                 
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="white-popup mfp-with-anim mfp-hide mshop-popup-form" id="mshop-reset-popup">
+    <div class="popup-inner" style="padding:10px 0px 0px;">
+        <h4 class="popup-title">Password Recovery</h4>
+        <div class="popup-content">
+            <form class="text-left mshop-form-action account-form" action="https://justmarrakech.com/password/email" method="POST">
+                <div class="mshop-loader ">
+    <div class="loader-inner">
+        <div class="spinner-grow  align-self-center loader-lg"></div>
+    </div>
+</div>
+                <div class="form popup-inner">
+                    <div id="email-field" class="field-wrapper input">
+                        <div class="d-flex justify-content-between">
+                           <!-- <label for="femail">EMAIL</label>-->
+                        </div>
+                        <i class="fal fa-at"></i>
+                        <input id="femail" name="email" type="text" class="form-control mshop-validation" data-validation="required" value="" placeholder="Email">
+                    </div>
+
+                    <div class="mshop-message"></div>
+
+                    <div class="d-sm-flex justify-content-between pb-2">
+                        <div class="field-wrapper">
+                            <button type="submit" class="btn btn-primary" value="">RESET</button>
+                        </div>
+                    </div>
+
+                    <p>Enter your email and instructions will sent to you!</p>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<header class="site-header">
+    <div class="toggle-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="site-branding">
+        <h1>
+            <a href="https://justmarrakech.com">
+                                    <img src="https://justmarrakech.com/storage/2024/04/23/just-marrakech-updated-logo-1713875578.png" alt="Just Marrakech" height="39px"/>
+                            </a>
+        </h1>
+    </div>
+    <div class="site-navigation">
+        <div class="menu-overlay"></div>
+        <ul id="menu-primary-1" class="main-menu">            <li class="menu-item menu-item-1 ">
+                <a href="https://justmarrakech.com/" >Accueil</a>
+                            </li>
+                        <li class="menu-item menu-item-2 ">
+                <a href="https://justmarrakech.com/hotel" >Accommodations</a>
+                            </li>
+                        <li class="menu-item menu-item-3 ">
+                <a href="https://justmarrakech.com/experience/" >Activities</a>
+                            </li>
+                        <li class="menu-item menu-item-4 ">
+                <a href="https://justmarrakech.com/salon-services" >Outlets</a>
+                            </li>
+                        <li class="menu-item menu-item-5 ">
+                <a href="https://justmarrakech.com/experience-search?tour_type=118" >Only Girl</a>
+                            </li>
+                        <li class="menu-item menu-item-6 ">
+                <a href="https://justmarrakech.com/car" >Cars</a>
+                            </li>
+                        <li class="menu-item menu-item-7 ">
+                <a href="https://calendly.com/justmarrakech/30min" target="_blank">Tailored</a>
+                            </li>
+                        <li class="menu-item menu-item-8 ">
+                <a href="https://justmarrakech.com/blog" >Blog</a>
+                            </li>
+            </ul>
+       
+    </div>
+ 
+    <div class="user-navigation">
+
+      <ul>
+  
+      <li class="user-logged" style="top: 3px !important;">
+            <a href="#" class="nav-link" data-toggle="modal" data-target="#searchModal">
+                <i class="fa fa-search" style="font-size: 1.3rem;"></i>
+            </a>
+        </li> 
+                       <li class="user-logged" style="top:3px; ">
+
+            <a class="nav-link globe" href="#" aria-label="modalLanguge" data-toggle="modal" data-target="#languageModalCenter"> <i class="fa fa-globe" style="font-size: 1.3rem;"></i> </a>
+                  
+                     
+
+                       </li>
+                
+
+                                      <!--  <li class="become-partner"><a href="https://justmarrakech.com/become-a-partner" class="becomepartnerbtn" style="color: #000;font-weight: 500;font-size: 1rem;">Become A Partner</a></li> -->
+                <li>
+
+                     <div class="dropdown sv_user_login">
+                                        <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-bars" aria-hidden="true"></i>
+                                            <img src="https://justmarrakech.com/images/profile.jpg" class="head_avatar" alt="">
+                                        </button>
+                                        
+                                        <ul class="dropdown-menu">
+                                        <!--<li><a href="#mshop-register-popup" class="mshop-box-popup" data-effect="mfp-zoom-in">Sign Up</a></li>
+
+                                   <li><a class="mshop-box-popup" data-effect="mfp-zoom-in"  href="#mshop-login-popup">Log In</a></li>-->
+								   
+								   <li><a href="https://justmarrakech.com/register" class="">Sign Up</a></li>
+                                   <li><a class=""  href="https://justmarrakech.com/login">Log In</a></li>
+                                                                                        
+                                          <hr>
+                                          <li><a href="https://justmarrakech.com/page/help-center">Help</a></li>
+                                        </ul>
+                                    </div>
+                    <!--<a href="#mshop-login-popup" class="btn btn-sm btn-dark mshop-box-popup becomepartnerbtn" data-effect="mfp-zoom-in"><i class="fal fa-user pr-2"></i>Sign In</a>--></li>
+
+               
+                    </ul>
+    </div>
+</header>
+
+<!-- Search Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              
+            <button type="button" class="close text-28 mr-4 filter-cancel" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+            </div>
+            <div class="modal-body">
+                <form  action="https://justmarrakech.com/search" method="GET">
+                <div class="d-flex flex-column flex-sm-row justify-content-center px-5 px-sm-3">
+
+                 
+                        <input type="text" name="query" class="form-control" style="border-radius: 0px;" placeholder="Tapez votre recherche..." required> 
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> </button>
+                    </div>
+                  
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal mt-5 z-index-high" id="languageModalCenter" tabindex="-1" aria-labelledby="languageModalCenterTitle" style="padding-right: 17px;" aria-modal="true" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+               
+                    <div class="w-100 pt-3">
+                       <!-- <h5 class="modal-title text-20 text-center font-weight-700" id="languageModalLongTitle">Choose Your Language</h5>-->
+                    </div>
+
+                    <div>
+                        <button type="button" class="close text-28 mr-4 filter-cancel" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div> 
+                
+                <div class="modal-body pb-5 language-modal">
+                    <div class="row">
+                        <div class="col-md-12">
+                        
+                                
+<section id="tabs" class="project-tab">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav class="languagetab">
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Language</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Currency</a>
+                             
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                
+                                                                       
+					
+                         <div class="col-md-3" style="float: left;">
+                			<div class="language-list p-3 text-16 ">
+                							        <a href="?lang=fr" class="language_footer" data-lang="en"> <span class="flag-icon flag-icon-fr"></span>
+								Français</a>
+                							    </div>
+                							</div>
+
+					
+					
+                         <div class="col-md-3" style="float: left;">
+                			<div class="language-list p-3 text-16 currency-active">
+                							        <a href="?lang=en" class="language_footer" data-lang="en"> <span class="flag-icon flag-icon-gb"></span>
+								English</a>
+                							    </div>
+                							</div>
+
+					
+					
+                         <div class="col-md-3" style="float: left;">
+                			<div class="language-list p-3 text-16 ">
+                							        <a href="?lang=ar" class="language_footer" data-lang="en"> <span class="flag-icon flag-icon-sa"></span>
+								عربي</a>
+                							    </div>
+                							</div>
+
+					
+					
+                         <div class="col-md-3" style="float: left;">
+                			<div class="language-list p-3 text-16 ">
+                							        <a href="?lang=es" class="language_footer" data-lang="en"> <span class="flag-icon flag-icon-es"></span>
+								Español</a>
+                							    </div>
+                							</div>
+
+					
+					               
+			
+                                          </div>
+
+
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                                <div class="row">
+
+                                                         </div> 
+
+                            </div>
+                           
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+               
+
+
+
+                    </div>
+
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div> </div>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 mr-auto mt-5 text-md-left text-center">
+            <a href="https://justmarrakech.com" class="ml-md-5">
+                <!--<img alt="image-404" src="https://justmarrakech.com/admin/assets/img/90x90.jpg" class="theme-logo">-->
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid error-content">
+    <div class="">
+            <h1 class="error-number">404</h1>
+    <p class="mini-text">Ooops!</p>
+    <p class="error-text mb-4 mt-1">The page you requested was not found!</p>
+    <a href="https://justmarrakech.com" class="btn btn-primary mt-5">Go Back</a>
+    </div>
+</div>
+
+
+<!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+<script src="https://justmarrakech.com/html/assets/vendor/jquery-3.5.1.min.js"></script>
+                        <script src="https://justmarrakech.com/html/assets/vendor/bootstrap-4.0.0/dist/js/bootstrap.bundle.min.js"></script>
+                      
+                        <script src="https://justmarrakech.com/vendors/glow-cookies/glowCookies.js"></script>
+                         
+                        <script src="https://justmarrakech.com/vendors/magnific-popup/magnific-popup.js"></script>
+                                            <script src="https://justmarrakech.com/js/bootstrap-validate.js"></script>
+
+                            <script src="https://justmarrakech.com/html/assets/js/main.js"></script>
+                        <script src="https://justmarrakech.com/html/assets/js/custom.js?v=1.0.3.2"></script>
+                                <script src="https://justmarrakech.com/admin/plugins/toast/jquery.toast.min.js"></script>
+                      
+<!-- END GLOBAL MANDATORY SCRIPTS -->
+<script type="text/javascript">
+   /*$('body').on('click', '.sv_support, .footer-close', function() {
+         $('.sv_footer_popup').show();
+      });*/
+
+      $(document).ready(function(){
+
+           $("#show").hide();
+
+          $("#hide").click(function(){
+                $("#show").show();
+                $("#hide").hide();
+             $(".sv_footer_popup").show();
+             $('.uparrow').hide();
+           $('.downarrow').show();
+
+          });
+          $("#show").click(function(){
+                
+                 $("#hide").show();
+                 $("#show").hide();
+              $(".sv_footer_popup").hide();
+              $('.downarrow').hide();
+             $('.uparrow').show();
+        
+          });
+
+           $('.footer-close').click(function() {
+
+
+            $('.sv_footer_popup').hide();
+                  $("#hide").show();
+                 $("#show").hide();
+                 $('.uparrow').show();
+          
+           });
+
+
+
+        /*$('.downarrow').hide();
+         $('.sv_support').click(function() {
+            $('.sv_footer_popup').show();
+           $('.uparrow').hide();
+           $('.downarrow').show();
+
+           });
+
+            $('.footer-close').click(function() {
+            $('.sv_footer_popup').hide();
+            $('.sv_support i').hide();
+            $('.downarrow').hide();
+             $('.uparrow').show();
+           });*/
+
+
+
+});
+</script>
+
+<section class="footer-fixed-nav d-block d-sm-none"> 
+    <div align="center">
+        <ul>
+            <li><a class="" href="https://justmarrakech.com"><i class="fa fa-home" aria-hidden="true" style="font-size: 19px;font-weight: 300;color:var(--primary);"></i> <div class="icon-txt">Home</div></a></li>         
+            
+            <li><a class="" href="https://justmarrakech.com/dashboard"><i class="fal fa-ballot-check" aria-hidden="true" style="font-size: 19px;font-weight: 300;color:var(--primary);"></i><div class="icon-txt">Report</div> </a></li>
+          
+            <li><a class="" href="https://justmarrakech.com/challenges"><i class="far fa-trophy" aria-hidden="true" style="font-size: 19px;font-weight: 300;color:var(--primary);"></i> <div class="icon-txt">Challenge</div></a></li>
+              
+            <li><a class="" href="https://justmarrakech.com/conversations"><i class="fa fa-comment" aria-hidden="true" style="font-size: 19px;font-weight: 300;color:var(--primary);"></i><div class="icon-txt">Messages</div> </a></li>
+          
+            <li><a class="" href="https://justmarrakech.com/dashboard/profile"><i class="fa fa-user" aria-hidden="true" style="font-size: 19px;font-weight: 300;color:var(--primary);"></i><div class="icon-txt">Account</div> </a></li>
+          
+        </ul> 
+    </div>
+</section>
+<footer class="site-footer">
+
+    <div class="footer-top sv_footer_popup" style="display: none;">
+
+          <div class="footer-close" style="font-size: 1.3rem; cursor: pointer;"><i class="fas fa-times text-24 p-3 pl-4 text-center"></i></div>
+        <div class="container">
+            <div class="row">
+                                                        <div class="col-md-3">
+                        <div class="widget widget-nav">
+                            <h4 class="widget__title">General</h4>
+                                <ul class="menu">            <li class="menu-item menu-item-1 ">
+                <a href="https://justmarrakech.com/page/about-us" >About us</a>
+                            </li>
+                        <li class="menu-item menu-item-2 ">
+                <a href="https://justmarrakech.com/contact-us" >Contact us</a>
+                            </li>
+                        <li class="menu-item menu-item-3 ">
+                <a href="https://justmarrakech.com/page/mentions-legales" >Legal Page</a>
+                            </li>
+                        <li class="menu-item menu-item-4 ">
+                <a href="https://justmarrakech.com/page/conditions-generales-de-vente" >JUST MARRAKECH T&amp;Cs</a>
+                            </li>
+                        <li class="menu-item menu-item-5 ">
+                <a href="https://justmarrakech.com/page/privacy-policy" >Privacy Policy</a>
+                            </li>
+            </ul>                        </div>
+                    </div>
+                                                                            <div class="col-md-3">
+                        <div class="widget widget-nav">
+                            <h4 class="widget__title">Services</h4>
+                                <ul class="menu">            <li class="menu-item menu-item-1 ">
+                <a href="https://justmarrakech.com/hotel" >Hotel</a>
+                            </li>
+                        <li class="menu-item menu-item-2 ">
+                <a href="https://justmarrakech.com/apartment" >Apartment</a>
+                            </li>
+                        <li class="menu-item menu-item-3 ">
+                <a href="https://justmarrakech.com/car" >Car</a>
+                            </li>
+                        <li class="menu-item menu-item-4 ">
+                <a href="https://justmarrakech.com/space" >Space</a>
+                            </li>
+                        <li class="menu-item menu-item-5 ">
+                <a href="https://justmarrakech.com/experience" >Experience</a>
+                            </li>
+                        <li class="menu-item menu-item-6 ">
+                <a href="https://justmarrakech.com/salon-services" >Salon</a>
+                            </li>
+            </ul>                        </div>
+                    </div>
+                                                                            <div class="col-md-3">
+                        <div class="widget widget-nav">
+                            <h4 class="widget__title">Quick Links</h4>
+                                <ul class="menu">            <li class="menu-item menu-item-1 ">
+                <a href="https://justmarrakech.com/page/terms-and-conditions" >Terms and Conditions</a>
+                            </li>
+                        <li class="menu-item menu-item-2 ">
+                <a href="https://justmarrakech.com/page/privacy-policy" >Privacy Policy</a>
+                            </li>
+                        <li class="menu-item menu-item-3 ">
+                <a href="https://justmarrakech.com/page/disclaimer" >Disclaimer</a>
+                            </li>
+                        <li class="menu-item menu-item-4 ">
+                <a href="https://justmarrakech.com/page/help-center" >Help Center</a>
+                            </li>
+            </ul>                        </div>
+                    </div>
+                                                                    <div class="col-md-3">
+                                             <ul class="social-footer">
+                                    <li style="display: inline-block;margin-left: 10px;">
+                        <a href="https://www.facebook.com/profile.php?id=100094653772461&amp;mibextid=ZbWKwL" title="Facebook" target="_blank">
+                                                            <i class="fab fa-facebook-f term-icon"></i>
+                                                    </a>
+                    </li>
+                                    <li style="display: inline-block;margin-left: 10px;">
+                        <a href="https://www.youtube.com/@JustMarrakech-cb5dt" title="Youtube" target="_blank">
+                                                            <i class="fab fa-youtube term-icon"></i>
+                                                    </a>
+                    </li>
+                                    <li style="display: inline-block;margin-left: 10px;">
+                        <a href="https://www.instagram.com/justmarrakech" title="Instagram" target="_blank">
+                                                            <i class="fab fa-instagram term-icon"></i>
+                                                    </a>
+                    </li>
+                                    <li style="display: inline-block;margin-left: 10px;">
+                        <a href="https://wa.me/212714173661" title="Whatsapp" target="_blank">
+                                                            <i class="fab fa-whatsapp term-icon"></i>
+                                                    </a>
+                    </li>
+                                    <li style="display: inline-block;margin-left: 10px;">
+                        <a href="https://www.tiktok.com/@justmarrakech?_t=8krhF9Chaar&amp;_r=1" title="TikTok" target="_blank">
+                                                            <i class="fab fa-tiktok term-icon"></i>
+                                                    </a>
+                    </li>
+                            </ul>
+                                <div class="widget widget-select" style="padding-top: 10px;">
+                                                                                                                <h4 class="widget__title">Language</h4>
+                                            <div class="select-language dropdown">
+
+                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    <span class="flag-icon flag-icon-gb"></span>
+					English                </button>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											                            <a class="dropdown-item" href="?lang=fr">
+                                <span class="flag-icon flag-icon-fr"></span>
+								Français                            </a>
+																												                            <a class="dropdown-item" href="?lang=ar">
+                                <span class="flag-icon flag-icon-sa"></span>
+								عربي                            </a>
+																	                            <a class="dropdown-item" href="?lang=es">
+                                <span class="flag-icon flag-icon-es"></span>
+								Español                            </a>
+											                </div>
+            </div>
+			
+                                <div class="mb-4"></div>
+                                                    
+                                            </div>
+                </div>
+                            </div>
+        </div>
+    </div>
+    <div class="footer-bottom pt-15 pb-15">
+
+        <div class="container">
+           <div class="row">
+            <div class="col-md-6 textalign1">
+                        <div class="copyright">
+                                Copyright © 2024 by Just Marrakech
+                            </div>
+        </div>
+         <div class="col-md-6 textalign">
+            <div>
+            <a  href="#" aria-label="modalLanguge" data-toggle="modal" data-target="#languageModalCenter"> <i class="fa fa-globe" style="font-size: 1.3rem;"></i> </a> &nbsp; &nbsp;
+            
+              
+           <a href="javascript:void(0)" class="sv_support" id="hide">Support &amp; resources <i class="fa fa-chevron-up uparrow"></i></a> 
+
+
+            <a href="javascript:void(0)" class="sv_support" id="show">Support &amp; resources <i class="fa fa-chevron-down downarrow"></i></a>
+
+
+          </div>
+         </div> 
+           
+                
+              </div> 
+
+        </div>
+    
+    </div>
+</footer>
+<style type="text/css">
+    
+.sv_footer_popup{
+
+    text-align:left !important;
+}
+
+</style>
+</body>
+</html>

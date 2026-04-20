@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Inter", sans-serif;
+
+  --color-primary: #7e553d;
+  --color-primary-container: #c8967a;
+  
+  --color-secondary: #526354;
+  --color-secondary-container: #d2e5d2;
+  
+  --color-tertiary: #7d562d;
+  --color-tertiary-container: #c79869;
+
+  --color-background: #fbf9f5;
+  --color-surface: #fbf9f5;
+  --color-surface-container-low: #f5f3ef;
+  --color-surface-container-lowest: #ffffff;
+  
+  --color-on-surface: #1b1c1a;
+  --color-on-primary: #ffffff;
+  --color-on-secondary: #ffffff;
+  
+  --color-outline: #83746d;
+  --color-outline-variant: #d5c3ba;
+}
+
+html {
+  font-size: 15px;
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1536px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, .display-font {
+  font-family: var(--font-display);
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background-color: rgba(251, 249, 245, 0.8);
+  backdrop-filter: blur(20px);
+}
+
+/* Tonal depth utilities */
+.sand-shadow {
+  box-shadow: 0 20px 40px rgba(43, 40, 37, 0.05);
+}
+
+/* Minimal Input */
+.minimal-input {
+  background-color: var(--color-surface-container-low);
+  border-radius: 0.75rem;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+.minimal-input:focus {
+  background-color: var(--color-surface-container-lowest);
+  border-color: rgba(131, 116, 109, 0.15); /* Ghost border */
+  outline: none;
+}
+
+/* Custom Scrollbar - Ochre Oasis Theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-container-low);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(126, 85, 61, 0.4);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(126, 85, 61, 0.7);
+}

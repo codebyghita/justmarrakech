@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Bien-Etre",
+        "slug": "bien-etre",
+        "status": "published"
+    },
+    {
+        "id": 2,
+        "name": "Culturelles",
+        "slug": "culturelles",
+        "status": "published"
+    },
+    {
+        "id": 3,
+        "name": "Experiences",
+        "slug": "experiences",
+        "status": "published"
+    },
+    {
+        "id": 4,
+        "name": "Piscines",
+        "slug": "piscines",
+        "status": "published"
+    },
+    {
+        "id": 5,
+        "name": "Diners & Soirees",
+        "slug": "diners-soirees",
+        "status": "published"
+    },
+    {
+        "id": 6,
+        "name": "Excursions",
+        "slug": "excursions",
+        "status": "published"
+    },
+    {
+        "id": 7,
+        "name": "Aventure",
+        "slug": "aventure",
+        "status": "published"
+    }
+]
