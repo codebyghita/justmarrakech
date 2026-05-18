@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
+import { getTranslated } from '../utils/translation';
 import { Globe, Menu, X } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '../utils/gsapSetup';
@@ -13,6 +14,7 @@ const LANGUAGES = [
   { code: 'es', label: 'Español' },
   { code: 'de', label: 'Deutsch' },
   { code: 'it', label: 'Italiano' },
+  { code: 'nl', label: 'Nederlands' },
 ];
 
 export default function Navbar() {
@@ -31,7 +33,7 @@ export default function Navbar() {
   }, { scope: container });
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/public/categories')
+    fetch('/api/public/categories')
       .then(res => res.json())
       .then(data => {
         const filtered = (data || []).filter(c => c.slug !== 'excursions');
@@ -39,7 +41,7 @@ export default function Navbar() {
       })
       .catch(err => console.error('Fetch categories error:', err));
 
-    fetch('http://127.0.0.1:8000/api/public/settings')
+    fetch('/api/public/settings')
       .then(res => res.json())
       .then(data => setSettings(data))
       .catch(err => console.error('Fetch settings error:', err));
@@ -80,27 +82,27 @@ export default function Navbar() {
   return (
     <>
       <nav ref={container} className="fixed w-full z-50 glass-panel border-b border-white/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 md:py-3 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1.5 md:py-2 flex justify-between items-center">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 shrink-0 nav-logo">
+          <Link to="/" className="flex items-center gap-2 shrink-0 nav-logo">
             <img
               src="/logo-transparent.png"
               alt="Just Marrakech"
-              className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain"
+              className="h-8 sm:h-9 md:h-10 w-auto object-contain"
               onError={(e) => { e.target.style.display = 'none'; }}
             />
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-5 xl:gap-8 mx-4">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6 mx-4">
             {mainLinks.map((link) => (
-              <div key={link.to} className="relative group/nav py-4 nav-link">
+              <div key={link.to} className="relative group/nav py-2 nav-link">
                 <Link
                     to={link.to}
                     className={`text-[11px] font-bold uppercase tracking-widest transition-all duration-200 whitespace-nowrap flex items-center gap-1 ${
                     isActive(link.to)
-                        ? 'text-primary'
+                        ? 'text-[#8B6F47]'
                         : 'text-on-surface/70 hover:text-primary'
                     }`}
                 >
@@ -115,12 +117,11 @@ export default function Navbar() {
                                 to={`/activities/${cat.slug}`}
                                 className="block px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-on-surface/70 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
                             >
-                                {cat.name}
+                                {getTranslated(cat, 'name', i18n.language)}
                             </Link>
                         ))}
                     </div>
                 )}
-                {isActive(link.to) && <div className="absolute bottom-3 left-0 right-0 h-0.5 bg-primary rounded-full" />}
               </div>
             ))}
           </div>
@@ -165,13 +166,13 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {mobileOpen && (
-          <div className="lg:hidden border-t border-white/10 bg-surface/95 backdrop-blur-xl px-4 sm:px-6 py-5 flex flex-col gap-1 max-h-[calc(100vh-84px)] overflow-y-auto">
+          <div className="lg:hidden border-t border-white/10 bg-surface/95 backdrop-blur-xl px-4 sm:px-6 py-3 flex flex-col gap-1 max-h-[calc(100vh-60px)] overflow-y-auto">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
                 onClick={() => setMobileOpen(false)}
-                className={`py-3 px-4 rounded-xl text-sm font-bold uppercase tracking-widest transition-all ${
+                className={`py-2 px-3 rounded-lg text-xs font-bold uppercase tracking-widest transition-all ${
                   isActive(link.to)
                     ? 'text-primary bg-primary/5'
                     : 'text-on-surface/70 hover:text-primary hover:bg-surface-container-low'

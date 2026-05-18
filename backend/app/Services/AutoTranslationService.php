@@ -2,55 +2,81 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class AutoTranslationService
 {
-    protected $apiKey;
-    protected $model;
-    protected $locales = ['en', 'ar', 'es'];
+    protected $locales = ['en', 'ar', 'es', 'de', 'it', 'nl'];
 
     public function __construct()
     {
-        $this->apiKey = env('HUGGINGFACE_API_KEY');
-        $this->model = env('TRANSLATION_MODEL', 'facebook/nllb-200-distilled-600M');
     }
 
     /**
      * Translate a string into target locales.
-     * Returns array ['en' => '...', 'ar' => '...', 'es' => '...']
+     * If $target is provided, returns just that translation string.
+     * If $target is null, returns array ['en' => '...', 'ar' => '...', 'es' => '...']
      */
-    public function translateString(string $text, string $source = 'fr'): array
+    public function translateString(string $text, string $source = 'fr', ?string $target = null)
     {
-        if (empty($text) || empty($this->apiKey) || $this->apiKey === 'hf_your_token_here') {
-            return [];
+        if (empty($text)) {
+            return $target ? "" : array_fill_keys($this->locales, "");
+        }
+
+        // Detect if string is JSON (possibly double encoded)
+        $current = $text;
+        $wasJson = false;
+        while (is_string($current)) {
+            $decoded = json_decode($current, true);
+            if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
+                $current = $decoded;
+                $wasJson = true;
+            } else {
+                break;
+            }
+        }
+
+        if ($wasJson && is_array($current)) {
+            if ($target) {
+                $res = $this->translateArray($current, $source);
+                return json_encode($res[$target] ?? $current, JSON_UNESCAPED_UNICODE);
+            } else {
+                $res = $this->translateArray($current, $source);
+                $final = [];
+                foreach ($this->locales as $locale) {
+                    $final[$locale] = json_encode($res[$locale] ?? $current, JSON_UNESCAPED_UNICODE);
+                }
+                return $final;
+            }
+        }
+
+        if ($target) {
+            try {
+                $tr = new GoogleTranslate();
+                $tr->setSource($source);
+                $tr->setTarget($target);
+                $res = $tr->translate($text);
+                usleep(30000); // 30ms delay
+                return $res;
+            } catch (\Exception $e) {
+                Log::error("Google Translation (single) Exception: " . $e->getMessage());
+                return $text;
+            }
         }
 
         $translations = [];
-
         foreach ($this->locales as $locale) {
             try {
-                $response = Http::withHeaders([
-                    'Authorization' => 'Bearer ' . $this->apiKey,
-                ])->post("https://api-inference.huggingface.co/models/" . $this->model, [
-                    'inputs' => $text,
-                    'parameters' => [
-                        'src_lang' => $this->mapLocale($source),
-                        'tgt_lang' => $this->mapLocale($locale),
-                    ]
-                ]);
-
-                if ($response->successful()) {
-                    $json = $response->json();
-                    // Some models return [{'translation_text': '...'}]
-                    $translations[$locale] = $json[0]['translation_text'] ?? $json['translation_text'] ?? $text;
-                } else {
-                    Log::warning("HF Translation Status Error: " . $response->status() . " Body: " . $response->body());
-                    $translations[$locale] = $text;
-                }
+                $tr = new GoogleTranslate();
+                $tr->setSource($source);
+                $tr->setTarget($locale);
+                
+                $translations[$locale] = $tr->translate($text);
+                
+                usleep(30000); // 30ms delay
             } catch (\Exception $e) {
-                Log::error("HF Translation Exception: " . $e->getMessage());
+                Log::error("Google Translation Exception: " . $e->getMessage());
                 $translations[$locale] = $text;
             }
         }
@@ -59,37 +85,46 @@ class AutoTranslationService
     }
 
     /**
-     * Translate an array of strings.
+     * Translate an array of strings (handles associative arrays and nested arrays).
      */
     public function translateArray(array $items, string $source = 'fr'): array
     {
-        if (empty($items)) return [];
+        if (empty($items)) return array_fill_keys($this->locales, []);
 
         $translations = [];
         foreach ($this->locales as $locale) {
-            $translatedItems = [];
-            foreach ($items as $item) {
-                $res = $this->translateString($item, $source);
-                $translatedItems[] = $res[$locale] ?? $item;
+            $translations[$locale] = [];
+        }
+
+        foreach ($items as $key => $value) {
+            // Skip technical keys
+            if (in_array($key, ['url', 'path', 'href', 'image', 'icon', 'slug', 'id', 'type', 'section', 'image_path'])) {
+                foreach ($this->locales as $locale) {
+                    $translations[$locale][$key] = $value;
+                }
+                continue;
             }
-            $translations[$locale] = $translatedItems;
+
+            if (is_array($value)) {
+                // Recursive call for nested arrays
+                $res = $this->translateArray($value, $source);
+                foreach ($this->locales as $locale) {
+                    $translations[$locale][$key] = $res[$locale] ?? $value;
+                }
+            } elseif (is_string($value) && !empty($value) && !is_numeric($value) && strlen($value) > 1) {
+                // Translate strings
+                $res = $this->translateString($value, $source);
+                foreach ($this->locales as $locale) {
+                    $translations[$locale][$key] = $res[$locale] ?? $value;
+                }
+            } else {
+                // Keep numbers, nulls, or very short strings as is
+                foreach ($this->locales as $locale) {
+                    $translations[$locale][$key] = $value;
+                }
+            }
         }
 
         return $translations;
-    }
-
-    /**
-     * Map common locales to model-specific codes (e.g. for NLLB)
-     */
-    protected function mapLocale(string $locale): string
-    {
-        $map = [
-            'fr' => 'fra_Latn',
-            'en' => 'eng_Latn',
-            'ar' => 'ara_Arab',
-            'es' => 'spa_Latn',
-        ];
-
-        return $map[$locale] ?? $locale;
     }
 }

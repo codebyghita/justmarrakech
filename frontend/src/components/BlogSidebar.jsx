@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, CheckCircle, XCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, XCircle, Clock } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 import axios from 'axios';
 
 const BlogSidebar = ({ recentPosts = [], categories = [] }) => {
@@ -13,7 +14,7 @@ const BlogSidebar = ({ recentPosts = [], categories = [] }) => {
     if (!email) return;
     setStatus('loading');
     try {
-      await axios.post('http://127.0.0.1:8000/api/public/newsletter', { email });
+      await axios.post('/api/public/newsletter', { email });
       setStatus('success');
       setEmail('');
     } catch (error) {
@@ -55,7 +56,7 @@ const BlogSidebar = ({ recentPosts = [], categories = [] }) => {
               <div className="flex gap-4 items-start">
                 <div className="w-20 h-20 rounded-2xl overflow-hidden flex-shrink-0 bg-surface shadow-sm border border-white/40">
                   <img 
-                    src={post.image ? (post.image.startsWith('http') ? post.image : `http://127.0.0.1:8000${post.image}`) : '/images/hero_home.jfif'} 
+                    src={getAssetUrl(post.image)} 
                     alt={post.title}
                     onError={(e) => {
                       e.target.onerror = null; 

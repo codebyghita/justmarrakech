@@ -18,7 +18,7 @@ class PublicCmsController extends Controller
 
     public function getSettings()
     {
-        return response()->json(SiteSetting::all()->keyBy('key'));
+        return response()->json(SiteSetting::with('translations')->get()->keyBy('key'));
     }
 
     public function getCategories()

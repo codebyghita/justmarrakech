@@ -16,6 +16,8 @@ import {
 
 import BlogSidebar from '../components/BlogSidebar';
 import { getTranslated } from '../utils/translation';
+import { updateSEO } from '../utils/seo';
+import { getAssetUrl } from '../utils/assets';
 
 const BlogDetail = () => {
     const { slug } = useParams();
@@ -44,8 +46,8 @@ const BlogDetail = () => {
         const fetchData = async () => {
             try {
                 const [postRes, allRes] = await Promise.all([
-                    axios.get(`http://127.0.0.1:8000/api/public/blog/${slug}`),
-                    axios.get('http://127.0.0.1:8000/api/public/blog')
+                    axios.get(`/api/public/blog/${slug}`),
+                    axios.get('/api/public/blog')
                 ]);
                 
                 setPost(postRes.data);
@@ -59,6 +61,9 @@ const BlogDetail = () => {
                         title: getTranslated(p, 'title', i18n.language)
                     }));
                 setRecentPosts(others);
+
+                // SEO Updates
+                updateSEO(getTranslated(postRes.data, 'title', i18n.language), postRes.data.meta_description || postRes.data.description);
             } catch (error) {
                 console.error('Error fetching blog post:', error);
             } finally {
@@ -91,11 +96,11 @@ const BlogDetail = () => {
 
     const title = getTranslated(post, 'title', i18n.language);
     const content = getTranslated(post, 'content', i18n.language);
-    const dateStr = new Date(post.created_at).toLocaleDateString(i18n.language === 'fr' ? 'fr-FR' : 'en-US', {
+    const dateStr = new Intl.DateTimeFormat(i18n.language === 'ar' ? 'ar-MA' : i18n.language === 'fr' ? 'fr-FR' : i18n.language === 'es' ? 'es-ES' : 'en-US', {
         month: 'long',
         day: 'numeric',
         year: 'numeric'
-    });
+    }).format(new Date(post.created_at));
 
     return (
         <div className="min-h-screen bg-background">
@@ -149,7 +154,7 @@ const BlogDetail = () => {
                         {post.image && (
                           <div className="mb-12 rounded-[2.5rem] overflow-hidden shadow-2xl bg-surface border border-white/40">
                             <img 
-                              src={post.image.startsWith('http') ? post.image : `http://127.0.0.1:8000${post.image}`} 
+                              src={getAssetUrl(post.image)} 
                               alt={title} 
                               onError={(e) => {
                                 // Instead of just hiding, we can set a clean fallback or just hide the block

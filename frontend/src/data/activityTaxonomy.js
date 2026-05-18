@@ -49,7 +49,7 @@ export const ACTIVITY_CATEGORIES = [
   {
     slug: 'piscines',
     label: 'Piscines',
-    cardImage: 'http://127.0.0.1:8000/storage/images/1775831889_image-the-lemonary-villa-privee-piscine-just-marrakech-1727870496-360x240.jpg',
+    cardImage: '/storage/images/1775831889_image-the-lemonary-villa-privee-piscine-just-marrakech-1727870496-360x240.jpg',
     heroTitle: 'Piscines a Marrakech',
     heroSubtitle: 'Day pass, villas et adresses detente',
     heroDescription:

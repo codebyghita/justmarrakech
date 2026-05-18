@@ -27,7 +27,13 @@
 }
 
 html {
-  font-size: 15px;
+  font-size: 14px;
+}
+
+@media (min-width: 640px) {
+  html {
+    font-size: 15px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -90,4 +96,13 @@ h1, h2, h3, h4, h5, h6, .display-font {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(126, 85, 61, 0.7);
+}
+
+/* Hide scrollbar for horizontal carousels */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

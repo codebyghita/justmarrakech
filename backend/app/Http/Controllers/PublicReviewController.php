@@ -11,14 +11,20 @@ class PublicReviewController extends Controller
 {
     public function index(Request $request)
     {
-        $type = $request->query('type');
-        $id = $request->query('id');
-
         $query = Review::where('status', 'approved');
 
-        if ($type && $id) {
-            $query->where('reviewable_type', $type)->where('reviewable_id', $id);
+        if (!$request->has('reviewable_id') || !$request->has('reviewable_type')) {
+            return response()->json([]);
         }
+
+        $typeMap = [
+            'Activity' => 'App\Models\Activity',
+            'Excursion' => 'App\Models\Activity',
+            'Accommodation' => 'App\Models\Accommodation',
+        ];
+        $type = $typeMap[$request->reviewable_type] ?? $request->reviewable_type;
+        $query->where('reviewable_type', $type)
+            ->where('reviewable_id', $request->reviewable_id);
 
         return response()->json($query->orderBy('created_at', 'desc')->get());
     }
@@ -31,11 +37,16 @@ class PublicReviewController extends Controller
             'comment' => 'required|string',
             'reviewable_type' => 'required|string',
             'reviewable_id' => 'required|integer',
+            'city' => 'nullable|string|max:255',
+            'travel_type' => 'nullable|string|max:255',
+            'experience_date' => 'nullable|string|max:255',
         ]);
 
         $type = $request->reviewable_type;
-        if ($type === 'Activity') $type = 'App\\Models\\Activity';
-        if ($type === 'Accommodation') $type = 'App\\Models\\Accommodation';
+        if ($type === 'Activity')
+            $type = 'App\\Models\\Activity';
+        if ($type === 'Accommodation')
+            $type = 'App\\Models\\Accommodation';
 
         $review = Review::create([
             'name' => $request->name,
@@ -44,6 +55,9 @@ class PublicReviewController extends Controller
             'reviewable_type' => $type,
             'reviewable_id' => $request->reviewable_id,
             'status' => 'pending', // Madame Celine must approve
+            'city' => $request->city,
+            'travel_type' => $request->travel_type,
+            'experience_date' => $request->experience_date,
         ]);
 
         return response()->json([

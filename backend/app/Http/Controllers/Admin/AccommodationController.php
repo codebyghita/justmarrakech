@@ -21,6 +21,14 @@ class AccommodationController extends Controller
 
     public function store(Request $request)
     {
+        // Sanitize all string fields: never save literal "null"/"undefined" strings from frontend
+        $stringFields = ['title', 'description', 'location', 'status', 'meta_description', 'location_address', 'google_maps_url'];
+        foreach ($stringFields as $field) {
+            if ($request->{$field} === 'null' || $request->{$field} === 'undefined') {
+                $request->merge([$field => '']);
+            }
+        }
+
         $validated = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -29,13 +37,26 @@ class AccommodationController extends Controller
             'images_files.*' => 'nullable|image|max:5120',
             'location' => 'nullable|string',
             'status' => 'nullable|string',
+            'meta_description' => 'nullable|string',
+            'location_address' => 'nullable|string',
+            'google_maps_url' => 'nullable|string',
+            'is_blocking_enabled' => 'nullable|boolean',
         ]);
 
         $imagePaths = [];
+        if ($request->has('existing_images')) {
+            $imagePaths = json_decode($request->existing_images, true);
+        }
+
         if ($request->hasFile('images_files')) {
             foreach ($request->file('images_files') as $file) {
                 $path = $file->store('accommodations', 'public');
-                $imagePaths[] = '/storage/' . $path;
+                $imagePaths[] = [
+                    'url' => '/storage/' . $path,
+                    'alt' => pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME),
+                    'title' => '',
+                    'caption' => ''
+                ];
             }
         }
         $validated['images'] = $imagePaths;
@@ -49,6 +70,14 @@ class AccommodationController extends Controller
 
     public function update(Request $request, Accommodation $accommodation)
     {
+        // Sanitize all string fields: never save literal "null"/"undefined" strings from frontend
+        $stringFields = ['title', 'description', 'location', 'status', 'meta_description', 'location_address', 'google_maps_url'];
+        foreach ($stringFields as $field) {
+            if ($request->{$field} === 'null' || $request->{$field} === 'undefined') {
+                $request->merge([$field => '']);
+            }
+        }
+
         $validated = $request->validate([
             'title' => 'sometimes|string',
             'description' => 'sometimes|string',
@@ -58,6 +87,10 @@ class AccommodationController extends Controller
             'existing_images' => 'nullable|string', // JSON of remaining images
             'location' => 'nullable|string',
             'status' => 'nullable|string',
+            'meta_description' => 'nullable|string',
+            'location_address' => 'nullable|string',
+            'google_maps_url' => 'nullable|string',
+            'is_blocking_enabled' => 'nullable|boolean',
         ]);
 
         $currentImages = [];
@@ -67,10 +100,28 @@ class AccommodationController extends Controller
             $currentImages = $accommodation->images ?? [];
         }
 
+        // Normalize to objects
+        $currentImages = array_map(function($img) {
+            if (is_string($img)) {
+                return [
+                    'url' => $img,
+                    'alt' => '',
+                    'title' => '',
+                    'caption' => ''
+                ];
+            }
+            return $img;
+        }, $currentImages);
+
         if ($request->hasFile('images_files')) {
             foreach ($request->file('images_files') as $file) {
                 $path = $file->store('accommodations', 'public');
-                $currentImages[] = '/storage/' . $path;
+                $currentImages[] = [
+                    'url' => '/storage/' . $path,
+                    'alt' => pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME),
+                    'title' => '',
+                    'caption' => ''
+                ];
             }
         }
         $validated['images'] = $currentImages;

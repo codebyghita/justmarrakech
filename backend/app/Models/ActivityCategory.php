@@ -25,6 +25,7 @@ class ActivityCategory extends Model
 
     protected $casts = [
         'badges' => 'array',
+        'image' => 'json'
     ];
 
     protected $translatable = [

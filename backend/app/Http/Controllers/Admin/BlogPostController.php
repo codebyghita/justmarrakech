@@ -15,6 +15,11 @@ class BlogPostController extends Controller
         return response()->json(BlogPost::latest()->get());
     }
 
+    public function show($id)
+    {
+        return response()->json(BlogPost::findOrFail($id));
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -33,12 +38,20 @@ class BlogPostController extends Controller
         }
 
         if ($request->hasFile('images_files')) {
-            $file = $request->file('images_files')[0];
+            $file = $request->file('images_files')[0] ?? $request->file('images_files');
             $path = $file->store('blog/' . date('Y/m/d'), 'public');
-            $validated['image'] = '/storage/' . $path;
+            $validated['image'] = [
+                'url' => '/storage/' . $path,
+                'alt' => pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME),
+                'title' => '',
+                'caption' => ''
+            ];
+        } else if ($request->has('image') && is_array($request->image)) {
+            $validated['image'] = $request->image;
         }
 
         $post = BlogPost::create($validated);
+
         return response()->json($post, 201);
     }
 
@@ -65,9 +78,16 @@ class BlogPostController extends Controller
         }
 
         if ($request->hasFile('images_files')) {
-            $file = $request->file('images_files')[0];
+            $file = $request->file('images_files')[0] ?? $request->file('images_files');
             $path = $file->store('blog/' . date('Y/m/d'), 'public');
-            $validated['image'] = '/storage/' . $path;
+            $validated['image'] = [
+                'url' => '/storage/' . $path,
+                'alt' => pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME),
+                'title' => '',
+                'caption' => ''
+            ];
+        } else if ($request->has('image') && is_array($request->image)) {
+            $validated['image'] = $request->image;
         } else {
             if ($request->has('existing_images') && is_string($request->existing_images)) {
                 $existing = json_decode($request->existing_images, true);
@@ -78,6 +98,7 @@ class BlogPostController extends Controller
         }
 
         $post->update($validated);
+
         return response()->json($post);
     }
 

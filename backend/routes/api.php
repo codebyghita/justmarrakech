@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\PublicBlogController;
+use App\Http\Controllers\Admin\MediaController;
 
 // Public Endpoints (Consumed by React Frontend)
 Route::get('/public/activities', function() {
@@ -69,6 +70,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
+    Route::post('/admin/update-account', [AuthController::class, 'updateAccount']);
     
     // CRUD APIS
     Route::apiResource('admin/activities', ActivityController::class);
@@ -80,6 +82,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('admin/settings', [SiteSettingController::class, 'index']);
     Route::post('admin/settings', [SiteSettingController::class, 'update']);
     Route::get('admin/cms', [CmsController::class, 'index']);
+    Route::post('admin/cms', [CmsController::class, 'store']);
     Route::put('admin/cms/{id}', [CmsController::class, 'update']);
     
     // Reviews Admin
@@ -91,6 +94,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('admin/calendar', [CalendarController::class, 'index']);
     Route::post('admin/calendar', [CalendarController::class, 'store']);
     Route::delete('admin/calendar/{id}', [CalendarController::class, 'destroy']);
+
+    // Media Library
+    Route::get('admin/media', [MediaController::class, 'index']);
+    Route::post('admin/media', [MediaController::class, 'store']);
+    Route::post('admin/translate-all', [SiteSettingController::class, 'translateAll']);
+    Route::put('admin/media/{media}', [MediaController::class, 'update']);
+    Route::delete('admin/media', [MediaController::class, 'destroy']);
 
     // Generic Image Upload (Sur Mesure gallery, cards, etc.)
     Route::post('admin/upload-image', function (\Illuminate\Http\Request $request) {

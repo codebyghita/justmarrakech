@@ -5,12 +5,14 @@ import { Instagram, Facebook, Mail, Phone, MapPin, Music2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { getTranslated, getJsonField } from '../utils/translation';
+
 export default function Footer() {
   const { t, i18n } = useTranslation();
   const [settings, setSettings] = useState({});
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/public/settings')
+    axios.get('/api/public/settings')
       .then((settingsRes) => {
         setSettings(settingsRes.data);
       })
@@ -28,10 +30,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
         <div className="lg:col-span-1">
           <Link to="/" className="text-3xl display-font font-bold text-primary tracking-tighter mb-6 block">
-            {getS('footer_brand_title', 'just marrakech')}
+            {getTranslated(settings['footer_brand_title'], 'value', i18n.language) || 'just marrakech'}
           </Link>
           <p className="text-on-surface-variant/80 text-sm leading-relaxed mb-8">
-            {getS('footer_description', t('footer.description'))}
+            {getTranslated(settings['footer_description'], 'value', i18n.language) || t('footer.description')}
           </p>
 
         </div>
@@ -99,19 +101,29 @@ export default function Footer() {
           </h4>
           <ul className="space-y-4">
             {(() => {
-                try {
-                    const links = JSON.parse(getS('footer_info_links', '[]'));
-                    if (!links.length) return (
+                const links = getJsonField(settings['footer_info_links'], 'value', i18n.language);
+                const result = Array.isArray(links) ? links.map((link, idx) => {
+                    const url = link.url || '';
+                    const isExternal = url.startsWith('http');
+                    const isStorage = url.startsWith('/storage');
+                    const finalUrl = isStorage ? `${url}` : url;
+
+                    return (
+                        <li key={`info-${idx}`} className="text-sm text-on-surface-variant hover:text-primary transition-colors">
+                            {(isExternal || isStorage) ? (
+                                <a href={finalUrl} target="_blank" rel="noreferrer">{link.label}</a>
+                            ) : (
+                                <Link to={url}>{link.label}</Link>
+                            )}
+                        </li>
+                    );
+                }) : [];
+
+                    if (!result.length) return (
                         <li className="text-sm text-on-surface-variant italic opacity-50">Aucun lien configuré</li>
                     );
-                    return links.map((link, idx) => (
-                        <li key={idx} className="text-sm text-on-surface-variant hover:text-primary transition-colors">
-                            <Link to={link.url}>{link.label}</Link>
-                        </li>
-                    ));
-                } catch (e) {
-                    return <li className="text-sm text-on-surface-variant italic opacity-50">Erreur de configuration</li>;
-                }
+
+                    return result;
             })()}
           </ul>
         </div>

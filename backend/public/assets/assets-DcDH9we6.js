@@ -1,0 +1,1 @@
+var e=e=>{if(!e)return`/images/hero_home.jfif`;if(e.startsWith(`http`))return e;if(e.startsWith(`/images`)||e.startsWith(`images`)||e===`/itinerary.jfif`||e===`itinerary.jfif`||e.startsWith(`/hero`))return e.startsWith(`/`)?e:`/${e}`;let t=e.startsWith(`/`)?e:`/${e}`;return t.startsWith(`/storage`)?`${t}`:`/storage${t}`};export{e as t};

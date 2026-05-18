@@ -47,7 +47,7 @@ class CmsAndCategoriesSeeder extends Seeder
             [
                 'slug' => 'piscines',
                 'name' => 'Piscines',
-                'image' => 'http://localhost:8000/storage/images/1775831889_image-the-lemonary-villa-privee-piscine-just-marrakech-1727870496-360x240.jpg',
+                'image' => null,
                 'hero_title' => 'Piscines a Marrakech',
                 'hero_subtitle' => 'Day pass, villas et adresses detente',
                 'hero_description' => "Retrouvez ici les experiences piscine et beach club a Marrakech, avec un format plus lisible pour le client et des contenus facilement gerables ensuite dans l'admin.",
@@ -78,7 +78,7 @@ class CmsAndCategoriesSeeder extends Seeder
 
 
         foreach ($categories as $cat) {
-            ActivityCategory::updateOrCreate(['slug' => $cat['slug']], $cat);
+            ActivityCategory::firstOrCreate(['slug' => $cat['slug']], array_merge($cat, ['status' => 'published']));
         }
 
         // 2. Link Activities (Hardcoded IDs based on current database state)
@@ -100,7 +100,7 @@ class CmsAndCategoriesSeeder extends Seeder
         foreach ($mappings as $activityId => $categorySlug) {
             $cat = ActivityCategory::where('slug', $categorySlug)->first();
             if ($cat) {
-                Activity::where('id', $activityId)->update([
+                Activity::where('id', $activityId)->whereNull('activity_category_id')->update([
                     'activity_category_id' => $cat->id,
                     'featured' => in_array($activityId, [42, 43, 48, 49, 52, 54])
                 ]);
@@ -153,6 +153,25 @@ class CmsAndCategoriesSeeder extends Seeder
                 'type' => 'json',
                 'content' => ['Selection testee', 'Reservation WhatsApp', 'Vehicule adapte au groupe', 'Couples & groupes']
             ],
+            // Excursions
+            [
+                'slug' => 'excursions-hero-title',
+                'section' => 'excursions',
+                'content' => 'Excursions au depart de Marrakech',
+                'type' => 'text'
+            ],
+            [
+                'slug' => 'excursions-hero-subtitle',
+                'section' => 'excursions',
+                'content' => "Des escapades memorables au-dela des remparts.",
+                'type' => 'text'
+            ],
+            [
+                'slug' => 'excursions-hero-badges',
+                'section' => 'excursions',
+                'type' => 'json',
+                'content' => ['Selection testee', 'Chauffeur prive', 'Climatisation', 'Tout inclus']
+            ],
             // Sur Mesure
             [
                 'slug' => 'sur-mesure-hero-title',
@@ -192,7 +211,7 @@ class CmsAndCategoriesSeeder extends Seeder
 
 
         foreach ($contents as $content) {
-            PageContent::updateOrCreate(['slug' => $content['slug']], $content);
+            PageContent::firstOrCreate(['slug' => $content['slug']], $content);
         }
 
         // 4. Site Settings
@@ -206,7 +225,7 @@ class CmsAndCategoriesSeeder extends Seeder
         ];
 
         foreach ($settings as $key => $value) {
-            SiteSetting::updateOrCreate(['key' => $key], ['value' => $value]);
+            SiteSetting::firstOrCreate(['key' => $key], ['value' => $value]);
         }
     }
 }

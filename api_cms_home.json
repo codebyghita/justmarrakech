@@ -1,0 +1,218 @@
+﻿{
+    "home-hero-title":  {
+                            "id":  1,
+                            "slug":  "home-hero-title",
+                            "section":  "home",
+                            "type":  "text",
+                            "content":  "Votre sejour sur-mesure a Marrakech",
+                            "image_path":  null,
+                            "created_at":  "2026-04-16T13:14:00.000000Z",
+                            "updated_at":  "2026-04-20T12:42:36.000000Z",
+                            "translations":  [
+                                                 "@{id=2; translatable_type=App\\Models\\PageContent; translatable_id=1; locale=ar; field=content; content=إقامتك المصممة خصيصًا في مراكش; created_at=2026-04-22T09:53:19.000000Z; updated_at=2026-04-22T09:53:19.000000Z}",
+                                                 "@{id=1; translatable_type=App\\Models\\PageContent; translatable_id=1; locale=en; field=content; content=Your tailor-made stay in Marrakech; created_at=2026-04-22T09:53:19.000000Z; updated_at=2026-04-22T09:53:19.000000Z}",
+                                                 "@{id=3; translatable_type=App\\Models\\PageContent; translatable_id=1; locale=es; field=content; content=Tu estancia a medida en Marrakech; created_at=2026-04-22T09:53:19.000000Z; updated_at=2026-04-22T09:53:19.000000Z}"
+                                             ]
+                        },
+    "home-hero-subtitle":  {
+                               "id":  2,
+                               "slug":  "home-hero-subtitle",
+                               "section":  "home",
+                               "type":  "text",
+                               "content":  "Just Marrakech selectionne pour vous les meilleures adresses et experiences pour un sejour authentique et inoubliable.",
+                               "image_path":  null,
+                               "created_at":  "2026-04-16T13:14:00.000000Z",
+                               "updated_at":  "2026-04-16T13:14:00.000000Z",
+                               "translations":  [
+                                                    "@{id=5; translatable_type=App\\Models\\PageContent; translatable_id=2; locale=ar; field=content; content=يختار لك Just Marrakech أفضل العناوين والتجارب لإقامة أصيلة لا تُنسى.; created_at=2026-04-22T09:53:25.000000Z; updated_at=2026-04-22T09:53:25.000000Z}",
+                                                    "@{id=4; translatable_type=App\\Models\\PageContent; translatable_id=2; locale=en; field=content; content=Just Marrakech selects for you the best addresses and experiences for an authentic and unforgettable stay.; created_at=2026-04-22T09:53:25.000000Z; updated_at=2026-04-22T09:53:25.000000Z}",
+                                                    "@{id=6; translatable_type=App\\Models\\PageContent; translatable_id=2; locale=es; field=content; content=Just Marrakech selecciona para usted las mejores direcciones y experiencias para una estancia auténtica e inolvidable.; created_at=2026-04-22T09:53:25.000000Z; updated_at=2026-04-22T09:53:25.000000Z}"
+                                                ]
+                           },
+    "home-how-it-works-steps":  {
+                                    "id":  3,
+                                    "slug":  "home-how-it-works-steps",
+                                    "section":  "home",
+                                    "type":  "json",
+                                    "content":  [
+                                                    "Vous nous donnez vos infos : budget + personnes + nuitees + dates + envies.",
+                                                    "Vous recevez des propositions personnalisees (descriptions + photos).",
+                                                    "On affine ensemble jusqu\u0027a ce que ce soit parfait.",
+                                                    "Vous recevez un planning clair.",
+                                                    "On"
+                                                ],
+                                    "image_path":  null,
+                                    "created_at":  "2026-04-16T13:14:00.000000Z",
+                                    "updated_at":  "2026-04-22T19:05:37.000000Z",
+                                    "translations":  [
+                                                         "@{id=8; translatable_type=App\\Models\\PageContent; translatable_id=3; locale=ar; field=content; content=[\"\\u0623\\u0646\\u062a \\u062a\\u0639\\u0637\\u064a\\u0646\\u0627 \\u0645\\u0639\\u0644\\u0648\\u0645\\u0627\\u062a\\u0643: \\u0627\\u0644\\u0645\\u064a\\u0632\\u0627\\u0646\\u064a\\u0629 + \\u0627\\u0644\\u0623\\u0634\\u062e\\u0627\\u0635 + \\u0627\\u0644\\u0644\\u064a\\u0627\\u0644\\u064a + \\u0627\\u0644\\u062a\\u0648\\u0627\\u0631\\u064a\\u062e + \\u0627\\u0644\\u0631\\u063a\\u0628\\u0627\\u062a.\",\"\\u062a\\u062a\\u0644\\u0642\\u0649 \\u0645\\u0642\\u062a\\u0631\\u062d\\u0627\\u062a \\u0634\\u062e\\u0635\\u064a\\u0629 (\\u0623\\u0648\\u0635\\u0627\\u0641 + \\u0635\\u0648\\u0631).\",\"\\u0646\\u062d\\u0646 \\u0646\\u0635\\u0642\\u0644 \\u0645\\u0639\\u064b\\u0627 \\u062d\\u062a\\u0649 \\u064a\\u0635\\u0628\\u062d \\u0645\\u062b\\u0627\\u0644\\u064a\\u064b\\u0627.\",\"\\u062a\\u062a\\u0644\\u0642\\u0649 \\u062c\\u062f\\u0648\\u0644 \\u0632\\u0645\\u0646\\u064a \\u0648\\u0627\\u0636\\u062d.\",\"\\u0646\\u062d\\u0646\"]; created_at=2026-04-22T09:54:16.000000Z; updated_at=2026-04-22T19:06:12.000000Z}",
+                                                         "@{id=7; translatable_type=App\\Models\\PageContent; translatable_id=3; locale=en; field=content; content=[\"You give us your information: budget + people + nights + dates + desires.\",\"You receive personalized proposals (descriptions + photos).\",\"We refine together until it is perfect.\",\"You receive a clear schedule.\",\"We\"]; created_at=2026-04-22T09:54:16.000000Z; updated_at=2026-04-22T19:06:12.000000Z}",
+                                                         "@{id=9; translatable_type=App\\Models\\PageContent; translatable_id=3; locale=es; field=content; content=[\"T\\u00fa nos das tus datos: presupuesto + personas + noches + fechas + deseos.\",\"Recibes propuestas personalizadas (descripciones + fotos).\",\"Refinamos juntos hasta que quede perfecto.\",\"Recibir\\u00e1 un horario claro.\",\"Nosotros\"]; created_at=2026-04-22T09:54:16.000000Z; updated_at=2026-04-22T19:06:12.000000Z}"
+                                                     ]
+                                },
+    "home-hero-img":  {
+                          "id":  11,
+                          "slug":  "home-hero-img",
+                          "section":  "home",
+                          "type":  "image",
+                          "content":  "/hero.jfif",
+                          "image_path":  null,
+                          "created_at":  "2026-04-19T16:30:28.000000Z",
+                          "updated_at":  "2026-04-19T16:30:28.000000Z",
+                          "translations":  [
+                                               "@{id=32; translatable_type=App\\Models\\PageContent; translatable_id=11; locale=ar; field=content; content=/hero.jfif; created_at=2026-04-22T09:55:39.000000Z; updated_at=2026-04-22T09:55:39.000000Z}",
+                                               "@{id=31; translatable_type=App\\Models\\PageContent; translatable_id=11; locale=en; field=content; content=/hero.jfif; created_at=2026-04-22T09:55:39.000000Z; updated_at=2026-04-22T09:55:39.000000Z}",
+                                               "@{id=33; translatable_type=App\\Models\\PageContent; translatable_id=11; locale=es; field=content; content=/hero.jfif; created_at=2026-04-22T09:55:39.000000Z; updated_at=2026-04-22T09:55:39.000000Z}"
+                                           ]
+                      },
+    "home-how-steps":  {
+                           "id":  22,
+                           "slug":  "home-how-steps",
+                           "section":  "home",
+                           "type":  "json",
+                           "content":  "[\n  \"Vous nous donnez vos infos : budget + personnes + nuitées + dates + envies.\",\n  \"Vous recevez des propositions personnalisées (descriptions + photos).\",\n  \"On affine ensemble jusqu\u0027à ce que ce soit parfait.\",\n  \"Vous recevez un planning clair.\",\n  \"On s\u0027occupe des réservations selon votre val\n]",
+                           "image_path":  null,
+                           "created_at":  "2026-04-19T17:36:15.000000Z",
+                           "updated_at":  "2026-04-22T18:14:43.000000Z",
+                           "translations":  [
+                                                "@{id=65; translatable_type=App\\Models\\PageContent; translatable_id=22; locale=ar; field=content; content=[\n  \"أنت تعطينا معلوماتك: الميزانية + الأشخاص + الليالي + التواريخ + الرغبات.\",\n  \"تتلقى مقترحات شخصية (أوصاف + صور).\"،\n  \"نحن نصقل معًا حتى نصل إلى الكمال.\",\n  \"تتلقى جدولًا زمنيًا واضحًا.\",\n  \"نحن نعتني بالحجوزات وفقًا لقيمتك\n]; created_at=2026-04-22T09:57:06.000000Z; updated_at=2026-04-22T18:14:48.000000Z}",
+                                                "@{id=64; translatable_type=App\\Models\\PageContent; translatable_id=22; locale=en; field=content; content=[\n  \"You give us your information: budget + people + nights + dates + desires.\",\n  \"You receive personalized proposals (descriptions + photos).\",\n  “We refine together until it’s perfect.”,\n  “You receive a clear schedule.”,\n  \"We take care of reservations according to your value\n]; created_at=2026-04-22T09:57:06.000000Z; updated_at=2026-04-22T18:14:48.000000Z}",
+                                                "@{id=66; translatable_type=App\\Models\\PageContent; translatable_id=22; locale=es; field=content; content=[\n  \"Tú nos das tus datos: presupuesto + personas + noches + fechas + deseos.\",\n  \"Recibes propuestas personalizadas (descripciones + fotos).\",\n  “Refinamos juntos hasta que quede perfecto”.\n  “Recibes un horario claro.”,\n  \"Nos ocupamos de las reservas según su valor.\n]; created_at=2026-04-22T09:57:06.000000Z; updated_at=2026-04-22T18:14:48.000000Z}"
+                                            ]
+                       },
+    "home-how-it-works-label":  {
+                                    "id":  23,
+                                    "slug":  "home-how-it-works-label",
+                                    "section":  "home",
+                                    "type":  "text",
+                                    "content":  "NOTRE PROCESSUS",
+                                    "image_path":  null,
+                                    "created_at":  "2026-04-19T17:36:53.000000Z",
+                                    "updated_at":  "2026-04-19T17:36:53.000000Z",
+                                    "translations":  [
+                                                         "@{id=68; translatable_type=App\\Models\\PageContent; translatable_id=23; locale=ar; field=content; content=عمليتنا; created_at=2026-04-22T09:57:11.000000Z; updated_at=2026-04-22T09:57:11.000000Z}",
+                                                         "@{id=67; translatable_type=App\\Models\\PageContent; translatable_id=23; locale=en; field=content; content=OUR PROCESS; created_at=2026-04-22T09:57:11.000000Z; updated_at=2026-04-22T09:57:11.000000Z}",
+                                                         "@{id=69; translatable_type=App\\Models\\PageContent; translatable_id=23; locale=es; field=content; content=NUESTRO PROCESO; created_at=2026-04-22T09:57:11.000000Z; updated_at=2026-04-22T09:57:11.000000Z}"
+                                                     ]
+                                },
+    "home-how-it-works-title":  {
+                                    "id":  24,
+                                    "slug":  "home-how-it-works-title",
+                                    "section":  "home",
+                                    "type":  "text",
+                                    "content":  "Comment nous créons votre voyage",
+                                    "image_path":  null,
+                                    "created_at":  "2026-04-19T17:36:53.000000Z",
+                                    "updated_at":  "2026-04-19T17:36:53.000000Z",
+                                    "translations":  [
+                                                         "@{id=71; translatable_type=App\\Models\\PageContent; translatable_id=24; locale=ar; field=content; content=كيف ننشئ رحلتك; created_at=2026-04-22T09:57:14.000000Z; updated_at=2026-04-22T09:57:14.000000Z}",
+                                                         "@{id=70; translatable_type=App\\Models\\PageContent; translatable_id=24; locale=en; field=content; content=How we create your trip; created_at=2026-04-22T09:57:14.000000Z; updated_at=2026-04-22T09:57:14.000000Z}",
+                                                         "@{id=72; translatable_type=App\\Models\\PageContent; translatable_id=24; locale=es; field=content; content=Cómo creamos tu viaje; created_at=2026-04-22T09:57:14.000000Z; updated_at=2026-04-22T09:57:14.000000Z}"
+                                                     ]
+                                },
+    "home-how-it-works-desc":  {
+                                   "id":  25,
+                                   "slug":  "home-how-it-works-desc",
+                                   "section":  "home",
+                                   "type":  "text",
+                                   "content":  "Une approche personnalisée et testée pour garantir l\u0027excellence.",
+                                   "image_path":  null,
+                                   "created_at":  "2026-04-19T17:36:53.000000Z",
+                                   "updated_at":  "2026-04-19T17:36:53.000000Z",
+                                   "translations":  [
+                                                        "@{id=74; translatable_type=App\\Models\\PageContent; translatable_id=25; locale=ar; field=content; content=نهج شخصي ومختبر لضمان التميز.; created_at=2026-04-22T09:57:17.000000Z; updated_at=2026-04-22T09:57:17.000000Z}",
+                                                        "@{id=73; translatable_type=App\\Models\\PageContent; translatable_id=25; locale=en; field=content; content=A personalized and tested approach to guarantee excellence.; created_at=2026-04-22T09:57:17.000000Z; updated_at=2026-04-22T09:57:17.000000Z}",
+                                                        "@{id=75; translatable_type=App\\Models\\PageContent; translatable_id=25; locale=es; field=content; content=Un enfoque personalizado y probado para garantizar la excelencia.; created_at=2026-04-22T09:57:17.000000Z; updated_at=2026-04-22T09:57:17.000000Z}"
+                                                    ]
+                               },
+    "home-how-it-works-cta":  {
+                                  "id":  26,
+                                  "slug":  "home-how-it-works-cta",
+                                  "section":  "home",
+                                  "type":  "text",
+                                  "content":  "Prêt à commencer l\u0027aventure ?",
+                                  "image_path":  null,
+                                  "created_at":  "2026-04-19T17:36:53.000000Z",
+                                  "updated_at":  "2026-04-19T17:36:53.000000Z",
+                                  "translations":  [
+                                                       "@{id=77; translatable_type=App\\Models\\PageContent; translatable_id=26; locale=ar; field=content; content=على استعداد لبدء المغامرة؟; created_at=2026-04-22T09:57:20.000000Z; updated_at=2026-04-22T09:57:20.000000Z}",
+                                                       "@{id=76; translatable_type=App\\Models\\PageContent; translatable_id=26; locale=en; field=content; content=Ready to start the adventure?; created_at=2026-04-22T09:57:20.000000Z; updated_at=2026-04-22T09:57:20.000000Z}",
+                                                       "@{id=78; translatable_type=App\\Models\\PageContent; translatable_id=26; locale=es; field=content; content=¿Listo para comenzar la aventura?; created_at=2026-04-22T09:57:20.000000Z; updated_at=2026-04-22T09:57:20.000000Z}"
+                                                   ]
+                              },
+    "home-vogue-quote":  {
+                             "id":  27,
+                             "slug":  "home-vogue-quote",
+                             "section":  "home",
+                             "type":  "text",
+                             "content":  "Just Marrakech a transformé mon voyage en une expérience cinématographique.",
+                             "image_path":  null,
+                             "created_at":  "2026-04-19T17:36:53.000000Z",
+                             "updated_at":  "2026-04-19T17:36:53.000000Z",
+                             "translations":  [
+                                                  "@{id=80; translatable_type=App\\Models\\PageContent; translatable_id=27; locale=ar; field=content; content=فقط مراكش حولت رحلتي إلى تجربة سينمائية.; created_at=2026-04-22T09:57:23.000000Z; updated_at=2026-04-22T09:57:23.000000Z}",
+                                                  "@{id=79; translatable_type=App\\Models\\PageContent; translatable_id=27; locale=en; field=content; content=Just Marrakech transformed my trip into a cinematic experience.; created_at=2026-04-22T09:57:23.000000Z; updated_at=2026-04-22T09:57:23.000000Z}",
+                                                  "@{id=81; translatable_type=App\\Models\\PageContent; translatable_id=27; locale=es; field=content; content=Just Marrakech transformó mi viaje en una experiencia cinematográfica.; created_at=2026-04-22T09:57:23.000000Z; updated_at=2026-04-22T09:57:23.000000Z}"
+                                              ]
+                         },
+    "home-vogue-subtitle":  {
+                                "id":  28,
+                                "slug":  "home-vogue-subtitle",
+                                "section":  "home",
+                                "type":  "text",
+                                "content":  "Vogue Travel Journal",
+                                "image_path":  null,
+                                "created_at":  "2026-04-19T17:36:53.000000Z",
+                                "updated_at":  "2026-04-19T17:36:53.000000Z",
+                                "translations":  [
+                                                     "@{id=83; translatable_type=App\\Models\\PageContent; translatable_id=28; locale=ar; field=content; content=مجلة فوغ للسفر; created_at=2026-04-22T09:57:27.000000Z; updated_at=2026-04-22T09:57:27.000000Z}",
+                                                     "@{id=82; translatable_type=App\\Models\\PageContent; translatable_id=28; locale=en; field=content; content=Vogue Travel Journal; created_at=2026-04-22T09:57:27.000000Z; updated_at=2026-04-22T09:57:27.000000Z}",
+                                                     "@{id=84; translatable_type=App\\Models\\PageContent; translatable_id=28; locale=es; field=content; content=Diario de viaje de Vogue; created_at=2026-04-22T09:57:27.000000Z; updated_at=2026-04-22T09:57:27.000000Z}"
+                                                 ]
+                            },
+    "home-featured-subtitle":  {
+                                   "id":  29,
+                                   "slug":  "home-featured-subtitle",
+                                   "section":  "home",
+                                   "type":  "text",
+                                   "content":  "LA SÉLECTION",
+                                   "image_path":  null,
+                                   "created_at":  "2026-04-19T17:36:53.000000Z",
+                                   "updated_at":  "2026-04-19T17:36:53.000000Z",
+                                   "translations":  [
+                                                        "@{id=86; translatable_type=App\\Models\\PageContent; translatable_id=29; locale=ar; field=content; content=الاختيار; created_at=2026-04-22T09:57:32.000000Z; updated_at=2026-04-22T09:57:32.000000Z}",
+                                                        "@{id=85; translatable_type=App\\Models\\PageContent; translatable_id=29; locale=en; field=content; content=THE SELECTION; created_at=2026-04-22T09:57:32.000000Z; updated_at=2026-04-22T09:57:32.000000Z}",
+                                                        "@{id=87; translatable_type=App\\Models\\PageContent; translatable_id=29; locale=es; field=content; content=LA SELECCIÓN; created_at=2026-04-22T09:57:32.000000Z; updated_at=2026-04-22T09:57:32.000000Z}"
+                                                    ]
+                               },
+    "home-featured-title":  {
+                                "id":  30,
+                                "slug":  "home-featured-title",
+                                "section":  "home",
+                                "type":  "text",
+                                "content":  "Aventures Exceptionnelles",
+                                "image_path":  null,
+                                "created_at":  "2026-04-19T17:36:53.000000Z",
+                                "updated_at":  "2026-04-19T17:36:53.000000Z",
+                                "translations":  [
+                                                     "@{id=89; translatable_type=App\\Models\\PageContent; translatable_id=30; locale=ar; field=content; content=مغامرات استثنائية; created_at=2026-04-22T09:57:35.000000Z; updated_at=2026-04-22T09:57:35.000000Z}",
+                                                     "@{id=88; translatable_type=App\\Models\\PageContent; translatable_id=30; locale=en; field=content; content=Exceptional Adventures; created_at=2026-04-22T09:57:35.000000Z; updated_at=2026-04-22T09:57:35.000000Z}",
+                                                     "@{id=90; translatable_type=App\\Models\\PageContent; translatable_id=30; locale=es; field=content; content=Aventuras excepcionales; created_at=2026-04-22T09:57:35.000000Z; updated_at=2026-04-22T09:57:35.000000Z}"
+                                                 ]
+                            },
+    "home-view-collection":  {
+                                 "id":  31,
+                                 "slug":  "home-view-collection",
+                                 "section":  "home",
+                                 "type":  "text",
+                                 "content":  "Voir toute la collection",
+                                 "image_path":  null,
+                                 "created_at":  "2026-04-19T17:36:53.000000Z",
+                                 "updated_at":  "2026-04-19T17:36:53.000000Z",
+                                 "translations":  [
+                                                      "@{id=92; translatable_type=App\\Models\\PageContent; translatable_id=31; locale=ar; field=content; content=شاهد المجموعة بأكملها; created_at=2026-04-22T09:57:39.000000Z; updated_at=2026-04-22T09:57:39.000000Z}",
+                                                      "@{id=91; translatable_type=App\\Models\\PageContent; translatable_id=31; locale=en; field=content; content=See the entire collection; created_at=2026-04-22T09:57:39.000000Z; updated_at=2026-04-22T09:57:39.000000Z}",
+                                                      "@{id=93; translatable_type=App\\Models\\PageContent; translatable_id=31; locale=es; field=content; content=Ver toda la colección; created_at=2026-04-22T09:57:39.000000Z; updated_at=2026-04-22T09:57:39.000000Z}"
+                                                  ]
+                             }
+}

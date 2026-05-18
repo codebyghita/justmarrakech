@@ -9,14 +9,14 @@ export default function ReviewsBlock({ reviewableId, reviewableType, siteSetting
   const [reviews, setReviews] = useState([]);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [reviewSubmitted, setReviewSubmitted] = useState(false);
-  const [newReview, setNewReview] = useState({ name: '', rating: 5, comment: '' });
+  const [newReview, setNewReview] = useState({ name: '', rating: 5, comment: '', city: '', travel_type: 'En couple', experience_date: '' });
   const [submittingReview, setSubmittingReview] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!reviewableId || !reviewableType) return;
     
-    axios.get(`http://127.0.0.1:8000/api/public/reviews?reviewable_id=${reviewableId}&reviewable_type=${reviewableType}`)
+    axios.get(`/api/public/reviews?reviewable_id=${reviewableId}&reviewable_type=${reviewableType}`)
       .then(res => {
         setReviews(res.data);
         setLoading(false);
@@ -31,7 +31,7 @@ export default function ReviewsBlock({ reviewableId, reviewableType, siteSetting
     e.preventDefault();
     setSubmittingReview(true);
     try {
-        await axios.post('http://127.0.0.1:8000/api/public/reviews', {
+        await axios.post('/api/public/reviews', {
             ...newReview,
             reviewable_id: reviewableId, 
             reviewable_type: reviewableType
@@ -41,14 +41,14 @@ export default function ReviewsBlock({ reviewableId, reviewableType, siteSetting
         // Add optimistic update so it shows immediately if approved or just wait
     } catch (err) {
         console.error(err);
-        alert('Erreur lors de l\'envoi de l\'avis.');
+        alert(t('reviews.submit_error', "Erreur lors de l'envoi de l'avis."));
         setSubmittingReview(false);
     }
   };
 
   const copyAndPostToGoogle = () => {
     navigator.clipboard.writeText(newReview.comment);
-    alert('Avis copié ! Vous allez être redirigé vers Google pour le coller.');
+    alert(t('reviews.copied_google', "Avis copié ! Vous allez être redirigé vers Google pour le coller."));
     const googleUrl = siteSettings?.['google_review_url']?.value || 'https://g.page/r/CVf-_qyR76RfEBM/review';
     window.open(googleUrl, '_blank');
   };
@@ -70,6 +70,16 @@ export default function ReviewsBlock({ reviewableId, reviewableType, siteSetting
     const date = new Date(dateValue);
     if (Number.isNaN(date.getTime())) return '';
     return date.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' });
+  };
+
+  const formatMonthYear = (dateValue) => {
+    if (!dateValue) return '';
+    const parts = dateValue.split('-');
+    if (parts.length === 2) {
+      const date = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1);
+      return date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+    }
+    return dateValue;
   };
 
   const reviewAverage = reviews.length > 0 ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length : 5.0;
@@ -104,7 +114,7 @@ export default function ReviewsBlock({ reviewableId, reviewableType, siteSetting
           <form onSubmit={submitReview} className="mb-8 sm:mb-12 p-5 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] bg-surface-container-lowest border border-primary/10 animate-in fade-in slide-in-from-top-4 duration-500">
               <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                   <div>
-                      <label className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary/60 block mb-2">{t('reviews.your_name', 'Votre nom')}</label>
+                      <label className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary/60 block mb-2">{t('reviews.your_name', 'Votre nom')} *</label>
                       <input 
                           required
                           type="text" 
@@ -114,7 +124,7 @@ export default function ReviewsBlock({ reviewableId, reviewableType, siteSetting
                       />
                   </div>
                   <div>
-                      <label className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary/60 block mb-2">{t('reviews.rating', 'Note')}</label>
+                      <label className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary/60 block mb-2">{t('reviews.rating', 'Note')} *</label>
                       <div className="flex gap-2">
                           {[1,2,3,4,5].map(star => (
                               <button 
@@ -129,8 +139,48 @@ export default function ReviewsBlock({ reviewableId, reviewableType, siteSetting
                       </div>
                   </div>
               </div>
+
+              <div className="grid md:grid-cols-3 gap-4 sm:gap-6 mb-4 sm:mb-6">
+                  <div>
+                      <label className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary/60 block mb-2">{t('reviews.city')}</label>
+                      <input 
+                          required
+                          type="text" 
+                          className="w-full bg-white border border-primary/10 rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary outline-none"
+                          value={newReview.city}
+                          onChange={e => setNewReview({...newReview, city: e.target.value})}
+                      />
+                  </div>
+                  <div>
+                      <label className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary/60 block mb-2">{t('reviews.travel_type')}</label>
+                      <select 
+                          required
+                          className="w-full bg-white border border-primary/10 rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary outline-none appearance-none"
+                          value={newReview.travel_type}
+                          onChange={e => setNewReview({...newReview, travel_type: e.target.value})}
+                      >
+                          <option value="En couple">{t('reviews.couple')}</option>
+                          <option value="En famille">{t('reviews.family')}</option>
+                          <option value="Entre amis">{t('reviews.friends')}</option>
+                          <option value="Solo">{t('reviews.solo')}</option>
+                          <option value="EVJF">{t('reviews.evg')}</option>
+                          <option value="Groupe">{t('reviews.travel_group')}</option>
+                      </select>
+                  </div>
+                  <div>
+                      <label className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary/60 block mb-2">{t('reviews.experience_month')}</label>
+                      <input 
+                          required
+                          type="month" 
+                          className="w-full bg-white border border-primary/10 rounded-xl px-4 py-3 text-sm focus:ring-1 focus:ring-primary outline-none"
+                          value={newReview.experience_date}
+                          onChange={e => setNewReview({...newReview, experience_date: e.target.value})}
+                      />
+                  </div>
+              </div>
+
               <div className="mb-4 sm:mb-6">
-                  <label className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary/60 block mb-2">{t('reviews.your_message', 'Votre message')}</label>
+                  <label className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-primary/60 block mb-2">{t('reviews.your_message', 'Votre message')} *</label>
                   <textarea 
                       required
                       rows={4}
@@ -184,7 +234,11 @@ export default function ReviewsBlock({ reviewableId, reviewableType, siteSetting
             <div className="flex items-start justify-between mb-3 sm:mb-4">
               <div className="pr-2">
                 <p className="font-bold text-on-surface text-base sm:text-lg truncate">{review.name}</p>
-                <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-outline/50 mt-1">{formatReviewDate(review.created_at)}</p>
+                <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] text-outline/60 mt-1">
+                  {review.experience_date 
+                    ? `${t('reviews.experience_lived', "Expérience vécue en")} ${formatMonthYear(review.experience_date)} · ${review.travel_type || ''} · ${review.city || ''}`
+                    : formatReviewDate(review.created_at)}
+                </p>
               </div>
               <div className="shrink-0">
                   {renderStars(review.rating)}

@@ -1,0 +1,207 @@
+﻿{
+    "reservation_phone":  {
+                              "id":  1,
+                              "key":  "reservation_phone",
+                              "value":  "+212714173661",
+                              "created_at":  "2026-04-16T12:51:23.000000Z",
+                              "updated_at":  "2026-04-16T12:51:23.000000Z",
+                              "default_currency":  "MAD",
+                              "legal_mentions_link":  null,
+                              "cgv_link":  null,
+                              "translations":  [
+                                                   "@{id=524; translatable_type=App\\Models\\SiteSetting; translatable_id=1; locale=ar; field=value; content=+212714173661; created_at=2026-04-22T10:18:06.000000Z; updated_at=2026-04-22T10:18:06.000000Z}",
+                                                   "@{id=523; translatable_type=App\\Models\\SiteSetting; translatable_id=1; locale=en; field=value; content=+212714173661; created_at=2026-04-22T10:18:06.000000Z; updated_at=2026-04-22T10:18:06.000000Z}",
+                                                   "@{id=525; translatable_type=App\\Models\\SiteSetting; translatable_id=1; locale=es; field=value; content=+212714173661; created_at=2026-04-22T10:18:06.000000Z; updated_at=2026-04-22T10:18:06.000000Z}"
+                                               ]
+                          },
+    "contact_email":  {
+                          "id":  2,
+                          "key":  "contact_email",
+                          "value":  "contact@justmarrakech.fr OFFICIEL VIP",
+                          "created_at":  "2026-04-16T12:51:23.000000Z",
+                          "updated_at":  "2026-04-19T22:05:13.000000Z",
+                          "default_currency":  "MAD",
+                          "legal_mentions_link":  null,
+                          "cgv_link":  null,
+                          "translations":  [
+                                               "@{id=527; translatable_type=App\\Models\\SiteSetting; translatable_id=2; locale=ar; field=value; content=contact@justmarrakech.fr VIP الرسمي; created_at=2026-04-22T10:18:09.000000Z; updated_at=2026-04-22T10:18:09.000000Z}",
+                                               "@{id=526; translatable_type=App\\Models\\SiteSetting; translatable_id=2; locale=en; field=value; content=contact@justmarrakech.fr OFFICIAL VIP; created_at=2026-04-22T10:18:09.000000Z; updated_at=2026-04-22T10:18:09.000000Z}",
+                                               "@{id=528; translatable_type=App\\Models\\SiteSetting; translatable_id=2; locale=es; field=value; content=contact@justmarrakech.fr VIP OFICIAL; created_at=2026-04-22T10:18:09.000000Z; updated_at=2026-04-22T10:18:09.000000Z}"
+                                           ]
+                      },
+    "contact_address":  {
+                            "id":  3,
+                            "key":  "contact_address",
+                            "value":  "TEST ADDRESS MARRAKECH",
+                            "created_at":  "2026-04-16T12:51:23.000000Z",
+                            "updated_at":  "2026-04-18T15:37:07.000000Z",
+                            "default_currency":  "MAD",
+                            "legal_mentions_link":  null,
+                            "cgv_link":  null,
+                            "translations":  [
+                                                 "@{id=530; translatable_type=App\\Models\\SiteSetting; translatable_id=3; locale=ar; field=value; content=عنوان الاختبار مراكش; created_at=2026-04-22T10:18:13.000000Z; updated_at=2026-04-22T10:18:13.000000Z}",
+                                                 "@{id=529; translatable_type=App\\Models\\SiteSetting; translatable_id=3; locale=en; field=value; content=TEST ADDRESS MARRAKECH; created_at=2026-04-22T10:18:13.000000Z; updated_at=2026-04-22T10:18:13.000000Z}",
+                                                 "@{id=531; translatable_type=App\\Models\\SiteSetting; translatable_id=3; locale=es; field=value; content=DIRECCIÓN DE LA PRUEBA MARRAKECH; created_at=2026-04-22T10:18:13.000000Z; updated_at=2026-04-22T10:18:13.000000Z}"
+                                             ]
+                        },
+    "google_review_url":  {
+                              "id":  4,
+                              "key":  "google_review_url",
+                              "value":  "https://g.page/r/CVf-_qyR76RfEBM/review",
+                              "created_at":  "2026-04-16T12:51:23.000000Z",
+                              "updated_at":  "2026-04-16T13:14:00.000000Z",
+                              "default_currency":  "MAD",
+                              "legal_mentions_link":  null,
+                              "cgv_link":  null,
+                              "translations":  [
+                                                   "@{id=533; translatable_type=App\\Models\\SiteSetting; translatable_id=4; locale=ar; field=value; content=https://g.page/r/CVf-_qyR76RfEBM/review; created_at=2026-04-22T10:18:17.000000Z; updated_at=2026-04-22T10:18:17.000000Z}",
+                                                   "@{id=532; translatable_type=App\\Models\\SiteSetting; translatable_id=4; locale=en; field=value; content=https://g.page/r/CVf-_qyR76RfEBM/review; created_at=2026-04-22T10:18:17.000000Z; updated_at=2026-04-22T10:18:17.000000Z}",
+                                                   "@{id=534; translatable_type=App\\Models\\SiteSetting; translatable_id=4; locale=es; field=value; content=https://g.page/r/CVf-_qyR76RfEBM/review; created_at=2026-04-22T10:18:17.000000Z; updated_at=2026-04-22T10:18:17.000000Z}"
+                                               ]
+                          },
+    "footer_brand_title":  {
+                               "id":  5,
+                               "key":  "footer_brand_title",
+                               "value":  "just marrakech",
+                               "created_at":  "2026-04-16T12:51:23.000000Z",
+                               "updated_at":  "2026-04-16T12:51:23.000000Z",
+                               "default_currency":  "MAD",
+                               "legal_mentions_link":  null,
+                               "cgv_link":  null,
+                               "translations":  [
+                                                    "@{id=536; translatable_type=App\\Models\\SiteSetting; translatable_id=5; locale=ar; field=value; content=مراكش فقط; created_at=2026-04-22T10:18:20.000000Z; updated_at=2026-04-22T10:18:20.000000Z}",
+                                                    "@{id=535; translatable_type=App\\Models\\SiteSetting; translatable_id=5; locale=en; field=value; content=just marrakech; created_at=2026-04-22T10:18:20.000000Z; updated_at=2026-04-22T10:18:20.000000Z}",
+                                                    "@{id=537; translatable_type=App\\Models\\SiteSetting; translatable_id=5; locale=es; field=value; content=solo marrakech; created_at=2026-04-22T10:18:20.000000Z; updated_at=2026-04-22T10:18:20.000000Z}"
+                                                ]
+                           },
+    "footer_description":  {
+                               "id":  6,
+                               "key":  "footer_description",
+                               "value":  "Just Marrakech est votre conciergerie locale dediee a la creation de sejours sur-mesure et d\u0027experiences authentiques a travers la ville ocre.",
+                               "created_at":  "2026-04-16T12:51:23.000000Z",
+                               "updated_at":  "2026-04-16T13:14:00.000000Z",
+                               "default_currency":  "MAD",
+                               "legal_mentions_link":  null,
+                               "cgv_link":  null,
+                               "translations":  [
+                                                    "@{id=539; translatable_type=App\\Models\\SiteSetting; translatable_id=6; locale=ar; field=value; content=Just Marrakech هو الكونسيرج المحلي الخاص بك المخصص لإنشاء إقامات مصممة خصيصًا وتجارب أصيلة في جميع أنحاء المدينة المغرة.; created_at=2026-04-22T10:18:25.000000Z; updated_at=2026-04-22T10:18:25.000000Z}",
+                                                    "@{id=538; translatable_type=App\\Models\\SiteSetting; translatable_id=6; locale=en; field=value; content=Just Marrakech is your local concierge dedicated to creating tailor-made stays and authentic experiences throughout the ocher city.; created_at=2026-04-22T10:18:25.000000Z; updated_at=2026-04-22T10:18:25.000000Z}",
+                                                    "@{id=540; translatable_type=App\\Models\\SiteSetting; translatable_id=6; locale=es; field=value; content=Just Marrakech es su conserje local dedicado a crear estancias a medida y experiencias auténticas en toda la ciudad ocre.; created_at=2026-04-22T10:18:25.000000Z; updated_at=2026-04-22T10:18:25.000000Z}"
+                                                ]
+                           },
+    "footer_menu":  {
+                        "id":  7,
+                        "key":  "footer_menu",
+                        "value":  [
+                                      "@{label=Activites; path=/activities}",
+                                      "@{label=Excursions; path=/excursions}",
+                                      "@{label=Sur Mesure; path=/sur-mesure}",
+                                      "@{label=Hebergements; path=/accommodations}",
+                                      "@{label=Blog; path=/blog}"
+                                  ],
+                        "created_at":  "2026-04-16T12:51:23.000000Z",
+                        "updated_at":  "2026-04-16T12:51:23.000000Z",
+                        "default_currency":  "MAD",
+                        "legal_mentions_link":  null,
+                        "cgv_link":  null,
+                        "translations":  [
+                                             "@{id=542; translatable_type=App\\Models\\SiteSetting; translatable_id=7; locale=ar; field=value; content=[{\"label\":\"Activites\",\"path\":\"\\/activities\"},{\"label\":\"Excursions\",\"path\":\"\\/excursions\"},{\"label\":\"Sur Mesure\",\"path\":\"\\/sur-mesure\"},{\"label\":\"Hebergements\",\"path\":\"\\/accommodations\"},{\"label\":\"Blog\",\"path\":\"\\/blog\"}]; created_at=2026-04-22T10:18:25.000000Z; updated_at=2026-04-22T10:18:25.000000Z}",
+                                             "@{id=541; translatable_type=App\\Models\\SiteSetting; translatable_id=7; locale=en; field=value; content=[{\"label\":\"Activites\",\"path\":\"\\/activities\"},{\"label\":\"Excursions\",\"path\":\"\\/excursions\"},{\"label\":\"Sur Mesure\",\"path\":\"\\/sur-mesure\"},{\"label\":\"Hebergements\",\"path\":\"\\/accommodations\"},{\"label\":\"Blog\",\"path\":\"\\/blog\"}]; created_at=2026-04-22T10:18:25.000000Z; updated_at=2026-04-22T10:18:25.000000Z}",
+                                             "@{id=543; translatable_type=App\\Models\\SiteSetting; translatable_id=7; locale=es; field=value; content=[{\"label\":\"Activites\",\"path\":\"\\/activities\"},{\"label\":\"Excursions\",\"path\":\"\\/excursions\"},{\"label\":\"Sur Mesure\",\"path\":\"\\/sur-mesure\"},{\"label\":\"Hebergements\",\"path\":\"\\/accommodations\"},{\"label\":\"Blog\",\"path\":\"\\/blog\"}]; created_at=2026-04-22T10:18:25.000000Z; updated_at=2026-04-22T10:18:25.000000Z}"
+                                         ]
+                    },
+    "footer_info_links":  {
+                              "id":  8,
+                              "key":  "footer_info_links",
+                              "value":  "[{\"label\":\"Mentions L\\u00e9gales\",\"url\":\"\\/mentions-legales\"},{\"label\":\"Politique de Confidentialit\\u00e9\",\"url\":\"\\/privacy\"},{\"label\":\"Conditions G\\u00e9n\\u00e9rales\",\"url\":\"\\/tos\"}]",
+                              "created_at":  "2026-04-16T12:51:23.000000Z",
+                              "updated_at":  "2026-04-19T16:45:54.000000Z",
+                              "default_currency":  "MAD",
+                              "legal_mentions_link":  null,
+                              "cgv_link":  null,
+                              "translations":  [
+                                                   "@{id=545; translatable_type=App\\Models\\SiteSetting; translatable_id=8; locale=ar; field=value; content=[{\"label\": \"الإشعارات القانونية\"، \"url\": \"\\/legal-mentions\"}، {\"label\": \"سياسة الخصوصية\"، \"url\": \"\\/privacy\"}، {\"label\": \"الشروط العامة\"، \"url\": \"\\/tos\"}]; created_at=2026-04-22T10:18:29.000000Z; updated_at=2026-04-22T10:18:29.000000Z}",
+                                                   "@{id=544; translatable_type=App\\Models\\SiteSetting; translatable_id=8; locale=en; field=value; content=[{\"label\":\"Legal Notices\",\"url\":\"\\/legal-mentions\"},{\"label\":\"Privacy Policy\",\"url\":\"\\/privacy\"},{\"label\":\"General Conditions\",\"url\":\"\\/tos\"}]; created_at=2026-04-22T10:18:29.000000Z; updated_at=2026-04-22T10:18:29.000000Z}",
+                                                   "@{id=546; translatable_type=App\\Models\\SiteSetting; translatable_id=8; locale=es; field=value; content=[{\"label\":\"Avisos Legales\",\"url\":\"\\/legal-mentions\"},{\"label\":\"Política de Privacidad\",\"url\":\"\\/privacy\"},{\"label\":\"Condiciones Generales\",\"url\":\"\\/tos\"}]; created_at=2026-04-22T10:18:29.000000Z; updated_at=2026-04-22T10:18:29.000000Z}"
+                                               ]
+                          },
+    "social_links":  {
+                         "id":  9,
+                         "key":  "social_links",
+                         "value":  {
+                                       "facebook":  "https://www.facebook.com/profile.php?id=100094653772461",
+                                       "instagram":  "https://www.instagram.com/justmarrakech/",
+                                       "tiktok":  "https://www.tiktok.com/@justmarrakech?_r=1\u0026_t=ZS-94luGit9gBQ"
+                                   },
+                         "created_at":  "2026-04-16T12:51:23.000000Z",
+                         "updated_at":  "2026-04-16T12:51:23.000000Z",
+                         "default_currency":  "MAD",
+                         "legal_mentions_link":  null,
+                         "cgv_link":  null,
+                         "translations":  [
+                                              "@{id=548; translatable_type=App\\Models\\SiteSetting; translatable_id=9; locale=ar; field=value; content=[\"https:\\/\\/www.facebook.com\\/profile.php?id=100094653772461\",\"https:\\/\\/www.instagram.com\\/justmarrakech\\/\",\"https:\\/\\/www.tiktok.com\\/@justmarrakech?_r=1\u0026_t=ZS-94luGit9gBQ\"]; created_at=2026-04-22T10:19:04.000000Z; updated_at=2026-04-22T10:19:04.000000Z}",
+                                              "@{id=547; translatable_type=App\\Models\\SiteSetting; translatable_id=9; locale=en; field=value; content=[\"https:\\/\\/www.facebook.com\\/profile.php?id=100094653772461\",\"https:\\/\\/www.instagram.com\\/justmarrakech\\/\",\"https:\\/\\/www.tiktok.com\\/@justmarrakech?_r=1\u0026_t=ZS-94luGit9gBQ\"]; created_at=2026-04-22T10:19:04.000000Z; updated_at=2026-04-22T10:19:04.000000Z}",
+                                              "@{id=549; translatable_type=App\\Models\\SiteSetting; translatable_id=9; locale=es; field=value; content=[\"https:\\/\\/www.facebook.com\\/profile.php?id=100094653772461\",\"https:\\/\\/www.instagram.com\\/justmarrakech\\/\",\"https:\\/\\/www.tiktok.com\\/@justmarrakech?_r=1\u0026_t=ZS-94luGit9gBQ\"]; created_at=2026-04-22T10:19:04.000000Z; updated_at=2026-04-22T10:19:04.000000Z}"
+                                          ]
+                     },
+    "whatsapp_number":  {
+                            "id":  10,
+                            "key":  "whatsapp_number",
+                            "value":  "+212 714-173661",
+                            "created_at":  "2026-04-16T13:14:00.000000Z",
+                            "updated_at":  "2026-04-20T08:52:39.000000Z",
+                            "default_currency":  "MAD",
+                            "legal_mentions_link":  null,
+                            "cgv_link":  null,
+                            "translations":  [
+                                                 "@{id=551; translatable_type=App\\Models\\SiteSetting; translatable_id=10; locale=ar; field=value; content=+212 714-173661; created_at=2026-04-22T10:19:09.000000Z; updated_at=2026-04-22T10:19:09.000000Z}",
+                                                 "@{id=550; translatable_type=App\\Models\\SiteSetting; translatable_id=10; locale=en; field=value; content=+212 714-173661; created_at=2026-04-22T10:19:09.000000Z; updated_at=2026-04-22T10:19:09.000000Z}",
+                                                 "@{id=552; translatable_type=App\\Models\\SiteSetting; translatable_id=10; locale=es; field=value; content=+212 714-173661; created_at=2026-04-22T10:19:09.000000Z; updated_at=2026-04-22T10:19:09.000000Z}"
+                                             ]
+                        },
+    "instagram_url":  {
+                          "id":  11,
+                          "key":  "instagram_url",
+                          "value":  "https://www.instagram.com/justmarrakech/",
+                          "created_at":  "2026-04-16T13:14:00.000000Z",
+                          "updated_at":  "2026-04-18T18:59:19.000000Z",
+                          "default_currency":  "MAD",
+                          "legal_mentions_link":  null,
+                          "cgv_link":  null,
+                          "translations":  [
+                                               "@{id=554; translatable_type=App\\Models\\SiteSetting; translatable_id=11; locale=ar; field=value; content=https://www.instagram.com/justmarrakech/; created_at=2026-04-22T10:19:13.000000Z; updated_at=2026-04-22T10:19:13.000000Z}",
+                                               "@{id=553; translatable_type=App\\Models\\SiteSetting; translatable_id=11; locale=en; field=value; content=https://www.instagram.com/justmarrakech/; created_at=2026-04-22T10:19:13.000000Z; updated_at=2026-04-22T10:19:13.000000Z}",
+                                               "@{id=555; translatable_type=App\\Models\\SiteSetting; translatable_id=11; locale=es; field=value; content=https://www.instagram.com/justmarrakech/; created_at=2026-04-22T10:19:13.000000Z; updated_at=2026-04-22T10:19:13.000000Z}"
+                                           ]
+                      },
+    "tiktok_url":  {
+                       "id":  12,
+                       "key":  "tiktok_url",
+                       "value":  "https://www.tiktok.com/@justmarrakech?_r=1\u0026_t=ZS-94luGit9gBQ",
+                       "created_at":  "2026-04-16T13:14:00.000000Z",
+                       "updated_at":  "2026-04-18T18:59:19.000000Z",
+                       "default_currency":  "MAD",
+                       "legal_mentions_link":  null,
+                       "cgv_link":  null,
+                       "translations":  [
+                                            "@{id=557; translatable_type=App\\Models\\SiteSetting; translatable_id=12; locale=ar; field=value; content=https://www.tiktok.com/@justmarrakech?_r=1\u0026_t=ZS-94luGit9gBQ; created_at=2026-04-22T10:19:17.000000Z; updated_at=2026-04-22T10:19:17.000000Z}",
+                                            "@{id=556; translatable_type=App\\Models\\SiteSetting; translatable_id=12; locale=en; field=value; content=https://www.tiktok.com/@justmarrakech?_r=1\u0026_t=ZS-94luGit9gBQ; created_at=2026-04-22T10:19:17.000000Z; updated_at=2026-04-22T10:19:17.000000Z}",
+                                            "@{id=558; translatable_type=App\\Models\\SiteSetting; translatable_id=12; locale=es; field=value; content=https://www.tiktok.com/@justmarrakech?_r=1\u0026_t=ZS-94luGit9gBQ; created_at=2026-04-22T10:19:17.000000Z; updated_at=2026-04-22T10:19:17.000000Z}"
+                                        ]
+                   },
+    "facebook_url":  {
+                         "id":  13,
+                         "key":  "facebook_url",
+                         "value":  "https://www.facebook.com/profile.php?id=100094653772461",
+                         "created_at":  "2026-04-16T13:14:00.000000Z",
+                         "updated_at":  "2026-04-18T18:59:19.000000Z",
+                         "default_currency":  "MAD",
+                         "legal_mentions_link":  null,
+                         "cgv_link":  null,
+                         "translations":  [
+                                              "@{id=560; translatable_type=App\\Models\\SiteSetting; translatable_id=13; locale=ar; field=value; content=https://www.facebook.com/profile.php?id=100094653772461; created_at=2026-04-22T10:19:22.000000Z; updated_at=2026-04-22T10:19:22.000000Z}",
+                                              "@{id=559; translatable_type=App\\Models\\SiteSetting; translatable_id=13; locale=en; field=value; content=https://www.facebook.com/profile.php?id=100094653772461; created_at=2026-04-22T10:19:22.000000Z; updated_at=2026-04-22T10:19:22.000000Z}",
+                                              "@{id=561; translatable_type=App\\Models\\SiteSetting; translatable_id=13; locale=es; field=value; content=https://www.facebook.com/profile.php?id=100094653772461; created_at=2026-04-22T10:19:22.000000Z; updated_at=2026-04-22T10:19:22.000000Z}"
+                                          ]
+                     }
+}

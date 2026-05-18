@@ -21,9 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        \App\Models\Activity::observe(\App\Observers\ActivityObserver::class);
-        \App\Models\Accommodation::observe(\App\Observers\AccommodationObserver::class);
-        \App\Models\BlogPost::observe(\App\Observers\BlogPostObserver::class);
-        \App\Models\PageContent::observe(\App\Observers\PageContentObserver::class);
+        // Translations are now handled by the HasTranslations trait on the models themselves
+        // \App\Models\Activity::observe(\App\Observers\ActivityObserver::class);
+        // \App\Models\Accommodation::observe(\App\Observers\AccommodationObserver::class);
+        // \App\Models\BlogPost::observe(\App\Observers\BlogPostObserver::class);
+        // \App\Models\PageContent::observe(\App\Observers\PageContentObserver::class);
     }
 }

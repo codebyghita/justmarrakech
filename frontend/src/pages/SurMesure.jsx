@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from '../utils/gsapSetup';
 import ReviewsBlock from '../components/ReviewsBlock';
 import { getCmsValue } from '../utils/translation';
+import { getAssetUrl } from '../utils/assets';
 
 export default function SurMesure() {
   const { t, i18n } = useTranslation();
@@ -21,8 +22,8 @@ export default function SurMesure() {
 
   useEffect(() => {
     Promise.all([
-      axios.get('http://127.0.0.1:8000/api/public/settings'),
-      axios.get('http://127.0.0.1:8000/api/public/content/sur-mesure')
+      axios.get('/api/public/settings'),
+      axios.get('/api/public/content/sur-mesure')
     ]).then(([settingsRes, cmsRes]) => {
       setSiteSettings(settingsRes.data);
       const block = cmsRes.data?.['sur-mesure-content'];
@@ -58,8 +59,8 @@ export default function SurMesure() {
   const handleWhatsApp = (context = 'Général') => {
     const rawNum = siteSettings['whatsapp_number']?.value || '212714173661';
     const whatsappNum = rawNum.replace(/\D/g, '');
-    const msg = `Bonjour Just Marrakech, je souhaite obtenir un devis pour un séjour sur mesure (%0AContexte : ${context}%0A). Voici mes souhaits : `;
-    window.open(`https://wa.me/${whatsappNum}?text=${msg}`, '_blank');
+    const msg = `${t('sur_mesure_page.whatsapp_intro')} (${t('sur_mesure_page.whatsapp_context')} : ${context})`;
+    window.open(`https://wa.me/${whatsappNum}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   if (loading) {
@@ -79,19 +80,35 @@ export default function SurMesure() {
 
   const activeSejourCards = smCms.sejourCards?.length > 0 ? smCms.sejourCards : [];
 
-  const targetAudiences = t('sur_mesure_page.target_audiences', { returnObjects: true }) || [];
-  const keyInfos = (t('sur_mesure_page.key_infos', { returnObjects: true }) || []).map((info, idx) => ({
+  const rawTargetAudiences = t('sur_mesure_page.target_audiences', { returnObjects: true });
+  const targetAudiences = Array.isArray(rawTargetAudiences) ? rawTargetAudiences : [];
+
+  const rawKeyInfos = t('sur_mesure_page.key_infos', { returnObjects: true });
+  const keyInfos = (Array.isArray(rawKeyInfos) ? rawKeyInfos : []).map((info, idx) => ({
       ...info,
       icon: idx === 0 ? <Clock size={16}/> : idx === 1 ? <Gem size={16}/> : idx === 2 ? <ShieldCheck size={16}/> : idx === 3 ? <Users size={16}/> : <Globe size={16}/>
   }));
 
-  const whyChooseUs = t('sur_mesure_page.why_choose_us', { returnObjects: true }) || [];
-  const programs = t('sur_mesure_page.programs', { returnObjects: true }) || [];
-  const formulas = t('sur_mesure_page.formulas', { returnObjects: true }) || [];
-  const inclusions = t('sur_mesure_page.inclusions', { returnObjects: true }) || { included: [], excluded: [] };
-  const faqs = t('sur_mesure_page.faqs', { returnObjects: true }) || [];
-  const practicalInfos = t('sur_mesure_page.practical_infos', { returnObjects: true }) || [];
-  const heroTags = t('sur_mesure_page.hero_tags', { returnObjects: true }) || [];
+  const rawWhyChooseUs = t('sur_mesure_page.why_choose_us', { returnObjects: true });
+  const whyChooseUs = Array.isArray(rawWhyChooseUs) ? rawWhyChooseUs : [];
+
+  const rawPrograms = t('sur_mesure_page.programs', { returnObjects: true });
+  const programs = Array.isArray(rawPrograms) ? rawPrograms : [];
+
+  const rawFormulas = t('sur_mesure_page.formulas', { returnObjects: true });
+  const formulas = Array.isArray(rawFormulas) ? rawFormulas : [];
+
+  const rawInclusions = t('sur_mesure_page.inclusions', { returnObjects: true });
+  const inclusions = (rawInclusions && typeof rawInclusions === 'object') ? rawInclusions : { included: [], excluded: [] };
+
+  const rawFaqs = t('sur_mesure_page.faqs', { returnObjects: true });
+  const faqs = Array.isArray(rawFaqs) ? rawFaqs : [];
+
+  const rawPracticalInfos = t('sur_mesure_page.practical_infos', { returnObjects: true });
+  const practicalInfos = Array.isArray(rawPracticalInfos) ? rawPracticalInfos : [];
+
+  const rawHeroTags = t('sur_mesure_page.hero_tags', { returnObjects: true });
+  const heroTags = Array.isArray(rawHeroTags) ? rawHeroTags : [];
 
   const activeTargetAudiences = smCms.targetAudiences !== undefined ? smCms.targetAudiences : targetAudiences;
   const activeKeyInfos = (smCms.keyInfos !== undefined ? smCms.keyInfos : keyInfos).map((info, idx) => ({
@@ -106,12 +123,6 @@ export default function SurMesure() {
   const activeHeroTags = smCms.heroTags !== undefined ? smCms.heroTags : heroTags;
   const activePracticalInfos = smCms.practicalInfos !== undefined ? smCms.practicalInfos : practicalInfos;
 
-  const getImgUrl = (path) => {
-    if (!path) return '/images/hero_home.jfif';
-    if (path.startsWith('http')) return path;
-    if (path.startsWith('/storage')) return `http://127.0.0.1:8000${path}`;
-    return path;
-  };
 
   return (
     <div ref={container} className="bg-surface min-h-screen pb-32" dir={dir}>
@@ -128,18 +139,18 @@ export default function SurMesure() {
       <section className="pt-10 sm:pt-12 md:pt-16 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="sur-hero-title mb-8">
             <span className="text-[10px] font-bold tracking-[0.4em] text-primary uppercase mb-4 block">
-                {t('sur_mesure.tag', 'Séjours sur mesure')}
+                {t('sur_mesure_page.hero_tag_top', 'Séjours sur mesure')}
             </span>
-            <h1 className="display-font text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-primary mb-6 italic tracking-tighter leading-[0.9] whitespace-pre-line">
-                {smCms.hero_title || 'Séjour sur mesure \nà Marrakech'}
+            <h1 className="display-font text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-primary mb-6 italic tracking-tighter leading-[0.9] whitespace-pre-line">
+                {smCms.hero_title || t('sur_mesure_page.hero_title', 'Séjour sur mesure \nà Marrakech')}
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-on-surface-variant font-light leading-relaxed max-w-3xl whitespace-pre-line">
-                {smCms.hero_subtitle || 'Votre Marrakech, à votre rythme — hébergement vérifié, activités sélectionnées, accompagnement avant et pendant : on compose tout selon vos envies et votre budget.'}
+            <p className="text-sm sm:text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-3xl whitespace-pre-line">
+                {smCms.hero_subtitle || t('sur_mesure_page.hero_desc', 'Votre Marrakech, à votre rythme — hébergement vérifié, activités sélectionnées, accompagnement avant et pendant : on compose tout selon vos envies et votre budget.')}
             </p>
         </div>
 
         {/* Hero Tags */}
-        <div className="sur-hero-tags flex flex-wrap gap-2 sm:gap-4 mb-12 border-y border-outline/10 py-6">
+        <div className="sur-hero-tags flex flex-wrap gap-2 sm:gap-3 mb-8 border-y border-outline/10 py-4">
              {activeHeroTags.map((tag, i) => (
                   <div key={i} className={`flex items-center gap-2 px-4 py-2 rounded-full border ${i === activeHeroTags.length - 1 ? 'bg-primary/10 border-primary/20 text-primary' : 'bg-surface-container-low border-primary/10 text-on-surface'}`}>
                      <Check size={14} className={i === activeHeroTags.length - 1 ? 'text-primary' : 'text-primary/70'}/> 
@@ -152,7 +163,7 @@ export default function SurMesure() {
         <div className="sur-gallery relative group overflow-hidden rounded-[1.8rem] sm:rounded-[3rem] sand-shadow-lg aspect-[4/3] md:aspect-[21/9] lg:aspect-[3/1] grid grid-cols-1 md:grid-cols-3 gap-2 bg-surface-container-low mb-20 fade-in-section">
             {galleryImages.map((img, i) => (
                 <div key={i} className={`relative overflow-hidden h-full cursor-zoom-in ${i === 2 ? 'hidden md:block' : ''}`} onClick={() => setSelectedImage(img)}>
-                    <img src={getImgUrl(img)} className="w-full h-full object-cover hover:scale-105 transition-transform duration-[2s]" alt={`Gallery ${i}`} />
+                    <img src={getAssetUrl(img)} className="w-full h-full object-cover hover:scale-105 transition-transform duration-[2s]" alt={`Gallery ${i}`} />
                 </div>
             ))}
         </div>
@@ -161,15 +172,15 @@ export default function SurMesure() {
         {activeSejourCards.length > 0 && (
           <div className="mb-20 fade-in-section">
             <div className="text-center mb-10">
-              <span className="text-[10px] font-bold tracking-[0.4em] text-primary uppercase mb-3 block">Destinations</span>
-              <h2 className="display-font text-3xl sm:text-4xl text-primary italic">Choisissez votre séjour</h2>
+              <span className="text-[10px] font-bold tracking-[0.4em] text-primary uppercase mb-3 block">{t('sur_mesure_page.destinations_label', 'Destinations')}</span>
+              <h2 className="display-font text-3xl sm:text-4xl text-primary italic">{t('sur_mesure_page.destinations_title', 'Choisissez votre séjour')}</h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {activeSejourCards.map((card, i) => (
                 <div key={i} className="group rounded-3xl overflow-hidden bg-surface border border-primary/10 sand-shadow hover:sand-shadow-lg transition-all duration-300">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
-                      src={getImgUrl(card.image)}
+                      src={getAssetUrl(card.image)}
                       alt={card.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
                       onError={e => { e.currentTarget.src = '/images/hero_home.jfif'; }}
@@ -183,7 +194,7 @@ export default function SurMesure() {
                       onClick={() => handleWhatsApp(card.title)}
                       className="mt-4 w-full py-3 bg-primary/10 hover:bg-primary hover:text-white text-primary text-[10px] font-bold uppercase tracking-widest rounded-xl transition-all"
                     >
-                      Demander un devis
+                      {t('sur_mesure_page.request_quote', 'Demander un devis')}
                     </button>
                   </div>
                 </div>
@@ -195,8 +206,8 @@ export default function SurMesure() {
 
       {/* 03 & 04 - Pour qui & Infos clés */}
       {(activeTargetAudiences.length > 0 || activeKeyInfos.length > 0) && (
-      <section className="bg-surface-container-low py-20 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-8">
+      <section className="bg-surface-container-low py-16 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-8">
                     {activeTargetAudiences.length > 0 && (
                     <div className="lg:col-span-8 fade-in-section">
                         <span className="text-[10px] font-bold tracking-[0.3em] text-primary uppercase mb-4 block">
@@ -245,7 +256,7 @@ export default function SurMesure() {
 
             {/* 05 - Pourquoi choisir */}
             {activeWhyChooseUs.length > 0 && (
-            <section className="py-20 md:py-32 px-4 sm:px-6 bg-surface">
+              <section className="py-16 md:py-24 px-4 sm:px-6 bg-surface">
                 <div className="max-w-7xl mx-auto fade-in-section">
                     <h2 className="display-font text-3xl sm:text-4xl text-primary italic mb-10 text-center">
                         {t('sur_mesure_page.why_choose_us_title', 'Pourquoi choisir Just Marrakech ?')}
@@ -264,7 +275,7 @@ export default function SurMesure() {
 
             {/* 06 - Exemple de programme */}
             {activePrograms.length > 0 && (
-              <section className="py-20 px-4 sm:px-6 bg-surface-container-low">
+              <section className="py-16 px-4 sm:px-6 bg-surface-container-low">
                 <div className="max-w-4xl mx-auto fade-in-section">
                     <div className="text-center mb-12">
                         <span className="text-[10px] font-bold tracking-[0.3em] text-primary uppercase mb-4 block">
@@ -299,7 +310,7 @@ export default function SurMesure() {
 
             {/* 08 - Formules */}
             {activeFormulas.length > 0 && (
-              <section className="py-20 md:py-32 px-4 sm:px-6 bg-surface">
+            <section className="py-16 md:py-24 px-4 sm:px-6 bg-surface">
                 <div className="max-w-7xl mx-auto fade-in-section">
                     <div className="text-center mb-16">
                         <span className="text-[10px] font-bold tracking-[0.3em] text-primary uppercase mb-4 block">
@@ -340,7 +351,7 @@ export default function SurMesure() {
             )}
 
             {/* 09 - Inclus / Non inclus & 10 - Infos / 11 - FAQ */}
-            <section className="py-20 px-4 sm:px-6 bg-surface-container-low mb-20">
+            <section className="py-16 px-4 sm:px-6 bg-surface-container-low mb-16">
                 <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 fade-in-section">
 
                     {/* Inclus / Non inclus */}

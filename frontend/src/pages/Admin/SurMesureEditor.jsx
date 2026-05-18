@@ -1,16 +1,9 @@
-import { Trash2, Plus, Image as ImageIcon, Upload } from 'lucide-react';
+import { Trash2, Plus, Image as ImageIcon, Upload, CheckCircle } from 'lucide-react';
+import { getAssetUrl } from '../../utils/assets';
 
-const API_BASE = 'http://127.0.0.1:8000';
+const API_BASE = '';
 
-// Helper to get full image URL
-const getImgUrl = (path) => {
-    if (!path) return null;
-    if (path.startsWith('http')) return path;
-    if (path.startsWith('/storage')) return `${API_BASE}${path}`;
-    return path;
-};
-
-export default function SurMesureEditor({ data, setData }) {
+export default function SurMesureEditor({ data, setData, onSave, isSaving }) {
 
     const updateField = (field, val) => setData({ ...data, [field]: val });
 
@@ -82,7 +75,27 @@ export default function SurMesureEditor({ data, setData }) {
     const inputClass = "w-full minimal-input p-3 bg-surface-container-lowest text-sm";
 
     return (
-        <div className="space-y-6 animate-in fade-in duration-300 max-w-4xl">
+        <div className="space-y-8 animate-in fade-in duration-300 max-w-4xl pb-32">
+
+            {/* Header / Sticky Save */}
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 bg-surface p-6 rounded-[2rem] border border-primary/20 shadow-lg sticky top-0 z-50 mb-10">
+                <div>
+                    <h4 className="display-font text-2xl text-primary italic">Édition Page Sur Mesure</h4>
+                    <p className="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-bold">Modifiez toutes les sections de la page personnalisée</p>
+                </div>
+                <button 
+                    onClick={onSave}
+                    disabled={isSaving}
+                    className="bg-primary text-white px-8 py-4 rounded-2xl text-xs font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-all flex items-center gap-3 disabled:opacity-50"
+                >
+                    {isSaving ? (
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    ) : (
+                        <Plus size={16} />
+                    )}
+                    Enregistrer les modifications
+                </button>
+            </div>
 
             {/* ── 0. GALERIE PHOTOS (nouvelle section) */}
             <div className="bg-primary/5 p-6 rounded-3xl border border-primary/20 shadow-sm space-y-4">
@@ -90,7 +103,7 @@ export default function SurMesureEditor({ data, setData }) {
                     <ImageIcon size={16} className="text-primary" />
                     <h5 className="font-bold uppercase tracking-[0.2em] text-primary text-[10px]">Photos Galerie (3 photos en haut de page)</h5>
                 </div>
-                <p className="text-[10px] text-on-surface-variant/70">Ces 3 photos apparaissent en grand en haut de la page Sur Mesure.</p>
+                <p className="text-[10px] text-on-surface-variant/70 italic opacity-80">Ces 3 photos apparaissent en grand en haut de la page Sur Mesure.</p>
                 <div className="grid grid-cols-3 gap-3">
                     {[0, 1, 2].map((idx) => (
                         <div key={idx} className="space-y-2">
@@ -99,7 +112,7 @@ export default function SurMesureEditor({ data, setData }) {
                                 {galleryImages[idx] ? (
                                     <>
                                         <img
-                                            src={getImgUrl(galleryImages[idx])}
+                                            src={getAssetUrl(galleryImages[idx])}
                                             className="w-full h-full object-cover"
                                             alt={`Galerie ${idx + 1}`}
                                         />
@@ -180,7 +193,7 @@ export default function SurMesureEditor({ data, setData }) {
                             <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-surface-container border border-outline/5 flex items-center justify-center">
                                 {card.image ? (
                                     <>
-                                        <img src={getImgUrl(card.image)} className="w-full h-full object-cover" alt="" />
+                                        <img src={getAssetUrl(card.image)} className="w-full h-full object-cover" alt="" />
                                         <button
                                             onClick={(e) => { 
                                                 e.preventDefault(); 
@@ -284,49 +297,70 @@ export default function SurMesureEditor({ data, setData }) {
 
             {/* ── Infos clés */}
             <div className={sectionClass}>
-                <h5 className="font-bold uppercase tracking-[0.2em] text-primary text-[10px] mb-4">Infos Clés (Chiffres & Résumé)</h5>
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <h5 className="font-bold uppercase tracking-[0.2em] text-primary text-[10px]">Infos Clés (Chiffres & Résumé)</h5>
+                    <button 
+                        onClick={() => addListItem('keyInfos', { label: '', value: '', icon: '💎' })}
+                        className="bg-primary/10 text-primary px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-primary/20 transition-all flex items-center gap-2 border border-primary/10"
+                    >
+                        <Plus size={14} /> Ajouter une info-clé
+                    </button>
+                </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                     {(data.keyInfos || []).map((item, i) => (
-                        <div key={i} className="flex gap-3 p-4 border border-outline/10 rounded-xl bg-surface-container-lowest items-center">
+                        <div key={i} className="flex gap-3 p-4 border border-outline/10 rounded-xl bg-surface-container-lowest items-center group">
                             <div className="flex-1 grid grid-cols-2 gap-2">
                                 <input value={item.label || ''} onChange={e => updateListItem('keyInfos', i, 'label', e.target.value)} className="w-full minimal-input p-2 text-xs font-bold uppercase tracking-widest bg-surface" placeholder="Ex: Durée" />
                                 <input value={item.value || ''} onChange={e => updateListItem('keyInfos', i, 'value', e.target.value)} className="w-full minimal-input p-2 text-sm bg-surface" placeholder="Ex: 5 Jours" />
                             </div>
-                            <button onClick={() => removeListItem('keyInfos', i)} className="text-error hover:bg-error-container p-2 rounded-xl h-fit"><Trash2 size={14} /></button>
+                            <button onClick={() => removeListItem('keyInfos', i)} className="text-error bg-error/5 hover:bg-error-container p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all"><Trash2 size={14} /></button>
                         </div>
                     ))}
                 </div>
-                <button onClick={() => addListItem('keyInfos', { label: '', value: '', icon: '💎' })} className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1"><Plus size={14} /> Ajouter une info-clé</button>
             </div>
 
             {/* ── 2. Target Audiences */}
             <div className={sectionClass}>
-                <h5 className="font-bold uppercase tracking-[0.2em] text-primary text-[10px] mb-4">2. Pour qui est fait ce séjour ?</h5>
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <h5 className="font-bold uppercase tracking-[0.2em] text-primary text-[10px]">2. Pour qui est fait ce séjour ?</h5>
+                    <button 
+                        onClick={() => addListItem('targetAudiences', { title: '', desc: '', icon: '✨' })}
+                        className="bg-primary/10 text-primary px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-primary/20 transition-all flex items-center gap-2 border border-primary/10"
+                    >
+                        <Plus size={14} /> Ajouter un profil
+                    </button>
+                </div>
                 {(data.targetAudiences || []).map((item, i) => (
-                    <div key={i} className="flex gap-4 p-4 border border-outline/10 rounded-xl bg-surface-container-lowest">
+                    <div key={i} className="flex gap-4 p-4 border border-outline/10 rounded-xl bg-surface-container-lowest group">
                         <div className="flex-1 space-y-3">
                             <input value={item.title || ''} onChange={e => updateListItem('targetAudiences', i, 'title', e.target.value)} className="w-full minimal-input p-3 text-sm font-bold bg-surface" placeholder="Ex: Couples en lune de miel" />
                             <textarea rows="2" value={item.desc || ''} onChange={e => updateListItem('targetAudiences', i, 'desc', e.target.value)} className="w-full minimal-input p-3 text-sm bg-surface resize-none" placeholder="Description" />
                         </div>
-                        <button onClick={() => removeListItem('targetAudiences', i)} className="text-error hover:bg-error-container p-2 rounded-xl h-fit"><Trash2 size={14} /></button>
+                        <button onClick={() => removeListItem('targetAudiences', i)} className="text-error bg-error/5 hover:bg-error-container p-3 rounded-xl h-fit opacity-0 group-hover:opacity-100 transition-all"><Trash2 size={16} /></button>
                     </div>
                 ))}
-                <button onClick={() => addListItem('targetAudiences', { title: '', desc: '', icon: '✨' })} className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1"><Plus size={14} /> Ajouter un profil</button>
             </div>
 
             {/* ── Why Choose Us */}
             <div className={sectionClass}>
-                <h5 className="font-bold uppercase tracking-[0.2em] text-primary text-[10px] mb-4">Pourquoi choisir Just Marrakech ?</h5>
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <h5 className="font-bold uppercase tracking-[0.2em] text-primary text-[10px]">Pourquoi choisir Just Marrakech ?</h5>
+                    <button 
+                        onClick={() => addListItem('whyChooseUs', { title: '', desc: '' })}
+                        className="bg-primary/10 text-primary px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-primary/20 transition-all flex items-center gap-2 border border-primary/10"
+                    >
+                        <Plus size={14} /> Ajouter un argument
+                    </button>
+                </div>
                 {(data.whyChooseUs || []).map((item, i) => (
-                    <div key={i} className="flex gap-4 p-4 border border-outline/10 rounded-xl bg-surface-container-lowest">
+                    <div key={i} className="flex gap-4 p-4 border border-outline/10 rounded-xl bg-surface-container-lowest group">
                         <div className="flex-1 space-y-3">
                             <input value={item.title || ''} onChange={e => updateListItem('whyChooseUs', i, 'title', e.target.value)} className="w-full minimal-input p-3 text-sm font-bold bg-surface" placeholder="Titre de la raison" />
                             <textarea rows="2" value={item.desc || ''} onChange={e => updateListItem('whyChooseUs', i, 'desc', e.target.value)} className="w-full minimal-input p-3 text-sm bg-surface resize-none" placeholder="Description courte" />
                         </div>
-                        <button onClick={() => removeListItem('whyChooseUs', i)} className="text-error hover:bg-error-container p-2 rounded-xl h-fit"><Trash2 size={14} /></button>
+                        <button onClick={() => removeListItem('whyChooseUs', i)} className="text-error bg-error/5 hover:bg-error-container p-3 rounded-xl h-fit opacity-0 group-hover:opacity-100 transition-all"><Trash2 size={16} /></button>
                     </div>
                 ))}
-                <button onClick={() => addListItem('whyChooseUs', { title: '', desc: '' })} className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1"><Plus size={14} /> Ajouter un argument</button>
             </div>
 
             {/* ── 3. Formulas */}
@@ -368,17 +402,24 @@ export default function SurMesureEditor({ data, setData }) {
 
             {/* ── 4. Programs */}
             <div className={sectionClass}>
-                <h5 className="font-bold uppercase tracking-[0.2em] text-primary text-[10px] mb-4">4. Exemple de Programmes</h5>
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <h5 className="font-bold uppercase tracking-[0.2em] text-primary text-[10px]">4. Exemple de Programmes</h5>
+                    <button 
+                        onClick={() => addListItem('programs', { title: '', desc: '' })}
+                        className="bg-primary/10 text-primary px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-primary/20 transition-all flex items-center gap-2 border border-primary/10"
+                    >
+                        <Plus size={14} /> Ajouter un programme
+                    </button>
+                </div>
                 {(data.programs || []).map((item, i) => (
-                    <div key={i} className="flex gap-4 p-4 border border-outline/10 rounded-xl bg-surface-container-lowest">
+                    <div key={i} className="flex gap-4 p-4 border border-outline/10 rounded-xl bg-surface-container-lowest group">
                         <div className="flex-1 space-y-3">
                             <input value={item.title || ''} onChange={e => updateListItem('programs', i, 'title', e.target.value)} className="w-full minimal-input p-3 text-sm font-bold bg-surface" placeholder="Ex: Jour 1 - Découverte" />
                             <textarea rows="3" value={item.desc || ''} onChange={e => updateListItem('programs', i, 'desc', e.target.value)} className="w-full minimal-input p-3 text-sm bg-surface resize-none" placeholder="Description du programme..." />
                         </div>
-                        <button onClick={() => removeListItem('programs', i)} className="text-error hover:bg-error-container p-2 rounded-xl h-fit"><Trash2 size={14} /></button>
+                        <button onClick={() => removeListItem('programs', i)} className="text-error bg-error/5 hover:bg-error-container p-3 rounded-xl h-fit opacity-0 group-hover:opacity-100 transition-all"><Trash2 size={16} /></button>
                     </div>
                 ))}
-                <button onClick={() => addListItem('programs', { title: '', desc: '' })} className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1"><Plus size={14} /> Ajouter un programme</button>
             </div>
 
             {/* ── Inclusions */}
@@ -398,17 +439,24 @@ export default function SurMesureEditor({ data, setData }) {
 
             {/* ── Practical Infos */}
             <div className="bg-primary/5 p-6 rounded-3xl border border-primary/10 shadow-sm space-y-4">
-                <h5 className="font-bold uppercase tracking-[0.2em] text-primary text-[10px] mb-2">Informations Pratiques</h5>
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <h5 className="font-bold uppercase tracking-[0.2em] text-primary text-[10px]">Informations Pratiques</h5>
+                    <button 
+                        onClick={() => addListItem('practicalInfos', { label: '', value: '' })}
+                        className="bg-primary/10 text-primary px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-primary/20 transition-all flex items-center gap-2 border border-primary/10"
+                    >
+                        <Plus size={14} /> Ajouter une ligne
+                    </button>
+                </div>
                 {(data.practicalInfos || []).map((item, i) => (
-                    <div key={i} className="flex gap-3 p-3 border border-outline/10 rounded-xl bg-surface items-center">
+                    <div key={i} className="flex gap-3 p-3 border border-outline/10 rounded-xl bg-surface items-center group">
                         <div className="flex-1 grid grid-cols-2 gap-2">
                             <input value={item.label || ''} onChange={e => updateListItem('practicalInfos', i, 'label', e.target.value)} className="w-full minimal-input p-2 text-sm bg-surface-container-lowest" placeholder="Ex: Horaires" />
                             <input value={item.value || ''} onChange={e => updateListItem('practicalInfos', i, 'value', e.target.value)} className="w-full minimal-input p-2 text-sm font-bold bg-surface-container-lowest text-right" placeholder="Ex: Flexible" />
                         </div>
-                        <button onClick={() => removeListItem('practicalInfos', i)} className="text-error hover:bg-error-container p-2 rounded-xl h-fit"><Trash2 size={14} /></button>
+                        <button onClick={() => removeListItem('practicalInfos', i)} className="text-error bg-error/5 hover:bg-error-container p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all"><Trash2 size={14} /></button>
                     </div>
                 ))}
-                <button onClick={() => addListItem('practicalInfos', { label: '', value: '' })} className="text-[10px] font-bold uppercase tracking-widest text-primary flex items-center gap-1"><Plus size={14} /> Ajouter une ligne pratique</button>
             </div>
 
             {/* ── 5. FAQ */}
@@ -438,6 +486,21 @@ export default function SurMesureEditor({ data, setData }) {
                 ))}
             </div>
 
+            {/* Final Save Button */}
+            <div className="flex justify-center pt-10">
+                <button 
+                    onClick={onSave}
+                    disabled={isSaving}
+                    className="bg-primary text-white px-12 py-5 rounded-[2rem] text-sm font-bold uppercase tracking-widest shadow-2xl hover:scale-105 transition-all flex items-center gap-4 border border-white/20"
+                >
+                    {isSaving ? (
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    ) : (
+                        <CheckCircle size={20} />
+                    )}
+                    Enregistrer toutes les modifications
+                </button>
+            </div>
         </div>
     );
 }

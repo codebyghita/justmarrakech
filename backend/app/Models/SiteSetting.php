@@ -5,13 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Traits\HasTranslations;
+
 class SiteSetting extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $fillable = [
         'key',
         'value',
+    ];
+
+    protected $translatable = [
+        'value'
     ];
 
     public function getValueAttribute($value)
@@ -26,6 +32,13 @@ class SiteSetting extends Model
 
     public function setValueAttribute($value): void
     {
+        if (is_string($value)) {
+            $decoded = json_decode($value, true);
+            if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
+                $this->attributes['value'] = $value;
+                return;
+            }
+        }
         $this->attributes['value'] = json_encode($value, JSON_UNESCAPED_UNICODE);
     }
 

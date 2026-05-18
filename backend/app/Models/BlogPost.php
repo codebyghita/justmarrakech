@@ -18,7 +18,12 @@ class BlogPost extends Model
         'content',
         'category',
         'image',
-        'status'
+        'status',
+        'meta_description'
+    ];
+
+    protected $casts = [
+        'image' => 'json'
     ];
 
     protected $translatable = [

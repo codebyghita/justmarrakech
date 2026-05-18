@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { MapPin, Star, Users, ArrowRight } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '../utils/gsapSetup';
-import { useRef } from 'react';
+import { getTranslated, getJsonField } from '../utils/translation';
 
 export default function Accommodations() {
   const { t, i18n } = useTranslation();
@@ -37,7 +38,7 @@ export default function Accommodations() {
   }, { scope: container, dependencies: [loading] });
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/public/accommodations')
+    axios.get('/api/public/accommodations')
       .then(res => {
         setAccommodations(res.data);
         setLoading(false);
@@ -45,26 +46,6 @@ export default function Accommodations() {
       .catch(err => console.error(err));
   }, []);
 
-  const getTranslated = (item, field) => {
-    if (!item) return '';
-    const defaultVal = item[field];
-    if (lang === 'fr') return defaultVal;
-    
-    if (item.translations && item.translations.length > 0) {
-      const trans = item.translations.find(tr => tr.locale === lang && tr.field === field);
-      if (trans) {
-        if (['included', 'not_included', 'pricing_details', 'highlights', 'images'].includes(field)) {
-          try {
-            return JSON.parse(trans.content);
-          } catch (e) {
-            return trans.content;
-          }
-        }
-        return trans.content;
-      }
-    }
-    return defaultVal;
-  };
 
   if (loading) {
     return (
@@ -121,7 +102,7 @@ export default function Accommodations() {
                 <div className="aspect-[4/3] md:aspect-[16/10] rounded-[3rem] overflow-hidden sand-shadow relative">
                   {heb.images?.[0] && (
                     <img 
-                      src={heb.images[0]?.startsWith('/storage') ? `http://127.0.0.1:8000${heb.images[0]}` : heb.images[0]} 
+                      src={getAssetUrl(heb.images?.[0])} 
                       className="w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-110" 
                       alt="" 
                     />
@@ -140,15 +121,15 @@ export default function Accommodations() {
               {/* Text Context */}
               <div className="w-full md:w-5/12">
                 <div className="flex items-center gap-4 mb-8">
-                   <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">{getTranslated(heb, 'type') || 'Villa'}</span>
+                   <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">{getTranslated(heb, 'type', lang) || 'Villa'}</span>
                 </div>
 
                 <h3 className="display-font text-4xl sm:text-5xl lg:text-6xl text-on-surface mb-8 leading-[1] group-hover:text-primary transition-colors tracking-tighter">
-                  {getTranslated(heb, 'title')}
+                  {getTranslated(heb, 'title', lang)}
                 </h3>
 
                 <p className="text-lg text-on-surface-variant line-clamp-3 text-base leading-relaxed mb-12 font-light">
-                  {getTranslated(heb, 'description')}
+                  {getTranslated(heb, 'description', lang)}
                 </p>
 
                 <div className="flex items-center justify-between pt-10 border-t border-surface-container-low">

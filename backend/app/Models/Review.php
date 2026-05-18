@@ -16,6 +16,9 @@ class Review extends Model
         'reviewable_type',
         'reviewable_id',
         'status',
+        'city',
+        'travel_type',
+        'experience_date',
     ];
 
     /**

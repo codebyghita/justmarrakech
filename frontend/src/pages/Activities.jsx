@@ -2,8 +2,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import { getTranslated, getCmsValue } from '../utils/translation';
+import { getTranslated, getCmsValue, getJsonField } from '../utils/translation';
 import { Clock, MapPin, Check } from 'lucide-react';
+import { getAssetUrl } from '../utils/assets';
 import { useGSAP } from '@gsap/react';
 import { gsap } from '../utils/gsapSetup';
 
@@ -14,9 +15,7 @@ function ActivityCard({ activity, compact, lang }) {
     e.currentTarget.onerror = null; // Prevent infinite loop
   };
 
-  const image = activity.images?.[0]?.startsWith('/storage') 
-    ? `http://127.0.0.1:8000${activity.images[0]}` 
-    : activity.images?.[0] || 'https://images.unsplash.com/photo-1597212618440-806262de4f6b?q=80&w=2073&auto=format&fit=crop';
+  const image = getAssetUrl(activity.images?.[0]?.url || activity.images?.[0]);
     
   const price = `${activity.price_from ?? ''}\u20ac`;
   const title = getTranslated(activity, 'title', lang);
@@ -64,7 +63,7 @@ function ActivityCard({ activity, compact, lang }) {
               </span>
               <span className="inline-flex items-center gap-2">
                 <MapPin size={14} className="text-primary/60" />
-                {location || 'Marrakech'}
+                {location}
               </span>
             </>
           )}
@@ -75,28 +74,29 @@ function ActivityCard({ activity, compact, lang }) {
 }
 
 
-function ActivitiesLanding({ featuredActivities, categories, cms, lang }) {
+function ActivitiesLanding({ categories, cms, lang }) {
   const { t } = useTranslation();
-  const badges = cms['activities-landing-badges']?.content || ['Selection testee', 'Reservation WhatsApp'];
+  const badges = getJsonField(cms['activities-landing-badges'], 'content', lang);
+  const finalBadges = badges.length > 0 ? badges : ['Selection testee', 'Reservation WhatsApp'];
   
   return (
     <>
       {/* CLEAN MINIMALIST HEADER */}
-      <div className="pt-20 pb-16 text-center max-w-5xl mx-auto px-4">
+      <div className="pt-16 pb-12 text-center max-w-5xl mx-auto px-4">
           <span className="text-[10px] font-bold tracking-[0.4em] text-primary/40 uppercase mb-4 block">
               Just Marrakech
           </span>
-          <h1 className="display-font text-4xl sm:text-5xl md:text-6xl text-primary mb-4 italic tracking-tight leading-tight">
+          <h1 className="display-font text-3xl sm:text-4xl md:text-5xl text-primary mb-4 italic tracking-tight leading-tight">
               {getCmsValue(cms, 'activities-hero-title', t('nav.activities'), lang)}
           </h1>
-          <p className="text-on-surface-variant max-w-2xl mx-auto text-base md:text-lg font-light italic opacity-70">
+          <p className="text-on-surface-variant max-w-2xl mx-auto text-sm md:text-base font-light italic opacity-70">
               {getCmsValue(cms, 'activities-hero-subtitle', t('hero.subtitleActivities'), lang)}
           </p>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-wrap justify-center gap-3 mb-20">
-            {badges.map((badge) => (
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+            {finalBadges.map((badge) => (
                 <span
                 key={badge}
                 className="inline-flex items-center gap-2 rounded-xl bg-primary/5 border border-primary/10 px-5 py-2.5 text-[10px] font-bold uppercase tracking-widest text-primary"
@@ -108,13 +108,13 @@ function ActivitiesLanding({ featuredActivities, categories, cms, lang }) {
         </div>
       </div>
 
-      <section className="mb-28">
+      <section className="mb-12">
         <div className="text-center mb-14">
-          <h2 className="display-font text-4xl md:text-6xl text-on-surface italic tracking-tight mb-4">{t('activities_page.choose_category')}</h2>
-          <p className="text-base text-on-surface-variant opacity-70 uppercase tracking-widest text-[10px] font-bold">{t('activities_page.choose_category_sub')}</p>
+          <h2 className="display-font text-4xl md:text-6xl text-on-surface italic tracking-tight mb-4">{getCmsValue(cms, 'activities-category-title', t('activities_page.choose_category'), lang)}</h2>
+          <p className="text-base text-on-surface-variant opacity-70 uppercase tracking-widest text-[10px] font-bold">{getCmsValue(cms, 'activities-category-subtitle', t('activities_page.choose_category_sub'), lang)}</p>
         </div>
-        <div className="category-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-          {categories.map((category) => (
+        <div className="category-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {Array.isArray(categories) && categories.map((category) => (
             <Link
               key={category.slug}
               to={`/activities/${category.slug}`}
@@ -122,33 +122,17 @@ function ActivitiesLanding({ featuredActivities, categories, cms, lang }) {
             >
               <div className="aspect-[4/3] overflow-hidden relative">
                 <img
-                  src={category.image?.startsWith('/storage') ? `http://127.0.0.1:8000${category.image}` : category.image || '/hero.jfif'}
+                  src={getAssetUrl(category.image?.url || category.image)}
                   alt={category.name}
                   onError={(e) => { e.currentTarget.src = '/images/hero_home.jfif'; }}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 <div className="absolute bottom-6 left-6 right-6">
-                   <h3 className="display-font text-3xl text-white italic leading-tight">{category.name}</h3>
+                   <h3 className="display-font text-3xl text-white italic leading-tight">{getTranslated(category, 'name', lang)}</h3>
                 </div>
               </div>
             </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="mb-12">
-        <div className="text-center mb-12">
-          <h2 className="display-font text-4xl md:text-6xl text-primary italic mb-6">
-            {t('activities_page.popular_activities', 'Activités Populaires')}
-          </h2>
-          <p className="text-on-surface-variant max-w-2xl mx-auto text-sm leading-relaxed mb-12">
-             {t('activities_page.exclusive_popular', 'Découvrez notre sélection des expériences les plus demandées à Marrakech.')}
-          </p>
-        </div>
-        <div className="activity-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-          {featuredActivities.map((activity) => (
-            <ActivityCard key={activity.id} activity={activity} lang={lang} compact />
           ))}
         </div>
       </section>
@@ -159,7 +143,7 @@ function ActivitiesLanding({ featuredActivities, categories, cms, lang }) {
 
 function CategoryPage({ category, activities, lang }) {
   const { t } = useTranslation();
-  const badges = category.badges || [];
+  const badges = getJsonField(category, 'badges', lang);
   return (
     <>
       <div className="max-w-5xl mx-auto mb-10 text-[10px] uppercase font-bold tracking-widest text-outline-variant flex gap-2 items-center">
@@ -167,17 +151,16 @@ function CategoryPage({ category, activities, lang }) {
         <span>{'>'}</span> 
         <Link to="/activities" className="hover:text-primary transition-colors">{t('nav.activities')}</Link> 
         <span>{'>'}</span> 
-        <span className="text-primary">{category.name}</span>
+        <span className="text-primary">{getTranslated(category, 'name', lang)}</span>
       </div>
 
-      <header className="listing-header max-w-5xl mx-auto text-center mb-14 md:mb-24">
-        <h1 className="display-font text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[5rem] text-primary tracking-tighter italic mb-4">
-          {category.hero_title || category.name}
+      <header className="listing-header max-w-5xl mx-auto text-center mb-10 md:mb-16">
+        <h1 className="display-font text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] text-primary tracking-tighter italic mb-4">
+          {getTranslated(category, 'hero_title', lang) || getTranslated(category, 'name', lang)}
         </h1>
-        <p className="text-xl md:text-2xl font-light text-primary/80 mb-10 italic">{category.hero_subtitle}</p>
+        <p className="text-lg md:text-xl font-light text-primary/80 mb-8 italic">{getTranslated(category, 'hero_subtitle', lang)}</p>
         <div className="max-w-3xl mx-auto space-y-6 mb-12">
-            <p className="text-base md:text-lg text-on-surface-variant leading-relaxed">{category.hero_description}</p>
-            <p className="text-base md:text-lg text-on-surface-variant leading-relaxed italic opacity-80">{category.hero_support}</p>
+            <p className="text-base md:text-lg text-on-surface-variant leading-relaxed">{getTranslated(category, 'hero_description', lang)}</p>
         </div>
         <div className="flex flex-wrap justify-center gap-3">
           {badges.map((badge) => (
@@ -193,7 +176,7 @@ function CategoryPage({ category, activities, lang }) {
       </header>
 
       {activities.length > 0 ? (
-        <div className="activity-grid grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="activity-grid grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {activities.map((activity) => (
             <ActivityCard key={activity.id} activity={activity} lang={lang} />
           ))}
@@ -223,60 +206,37 @@ export default function Activities() {
   const [loading, setLoading] = useState(true);
   const container = React.useRef();
 
+  // No GSAP animations for cards to ensure 100% reliability and visibility
   useGSAP(() => {
-    if (loading) return;
-
-    // Entrance for header
+    // Only simple header animation
     if (gsap.utils.toArray(".listing-header").length > 0) {
       gsap.from(".listing-header > *", {
-        y: 30,
+        y: 10,
         opacity: 0,
         stagger: 0.1,
-        duration: 1,
+        duration: 0.5,
         ease: "power2.out"
       });
     }
-
-    // Stagger for categories
-    if (gsap.utils.toArray(".category-card").length > 0) {
-      gsap.from(".category-card", {
-        scrollTrigger: {
-          trigger: ".category-grid",
-          start: "top 85%"
-        },
-        y: 40,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 1.2,
-        ease: "power3.out"
-      });
-    }
-
-    // Stagger for activities
-    if (gsap.utils.toArray(".activity-card").length > 0) {
-      gsap.from(".activity-card", {
-        scrollTrigger: {
-          trigger: ".activity-grid",
-          start: "top 85%"
-        },
-        scale: 0.95,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 1,
-        ease: "back.out(1.2)"
-      });
-    }
-
-  }, { scope: container, dependencies: [loading, categorySlug, activities.length, categories.length] });
+  }, { scope: container, dependencies: [loading, categorySlug] });
 
   useEffect(() => {
+    // Scroll to top when category changes to avoid visual glitches
+    window.scrollTo(0, 0);
+  }, [categorySlug]);
+
+  useEffect(() => {
+    setLoading(true);
     Promise.all([
-      axios.get('http://127.0.0.1:8000/api/public/activities'),
-      axios.get('http://127.0.0.1:8000/api/public/categories'),
-      axios.get('http://127.0.0.1:8000/api/public/content/activities')
+      axios.get('/api/public/activities'),
+      axios.get('/api/public/categories'),
+      axios.get('/api/public/content/activities')
     ])
     .then(([actRes, catRes, cmsRes]) => {
-      setActivities(actRes.data || []);
+      const allActivities = actRes.data || [];
+      const publishedActivities = allActivities.filter(a => a.status === 'published' || !a.status);
+      setActivities(publishedActivities);
+      
       const filteredCats = (catRes.data || []).filter(c => c.slug !== 'excursions');
       setCategories(filteredCats);
       setCms(cmsRes.data || {});
@@ -288,21 +248,10 @@ export default function Activities() {
     });
   }, []);
 
-  // On s'assure que featuredActivities exclut les excursions sur cette page
-  const nonExcursionActivities = useMemo(() => 
-    activities.filter(a => a.activityCategory?.slug !== 'excursions' && a.category !== 'excursions'),
-    [activities]
-  );
-
-  const featuredActivities = useMemo(() => {
-    const feats = nonExcursionActivities.filter(a => a.featured);
-    // Si aucune activité n'est marquée "featured", on prend les premières non-excursions disponibles
-    return feats.length > 0 ? feats.slice(0, 6) : nonExcursionActivities.slice(0, 6);
-  }, [nonExcursionActivities]);
   
   const selectedCategory = useMemo(() => categories.find(c => c.slug === categorySlug), [categories, categorySlug]);
   const categoryActivities = useMemo(
-    () => (selectedCategory ? activities.filter(a => a.activity_category_id === selectedCategory.id) : []),
+    () => (selectedCategory ? activities.filter(a => a.activity_category_id == selectedCategory.id) : []),
     [activities, selectedCategory]
   );
 
@@ -329,13 +278,12 @@ export default function Activities() {
   }
 
   return (
-    <div ref={container} className="bg-background min-h-screen pt-12 md:pt-16 pb-24 md:pb-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <div ref={container} className="bg-background min-h-screen pt-12 md:pt-16 pb-24 md:pb-32" style={{ transform: 'scale(0.9)', transformOrigin: 'top' }}>
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-6">
         {selectedCategory ? (
           <CategoryPage category={selectedCategory} activities={categoryActivities} lang={lang} />
         ) : (
           <ActivitiesLanding
-            featuredActivities={featuredActivities.length ? featuredActivities : activities.slice(0, 6)}
             categories={categories}
             cms={cms}
             lang={lang}
